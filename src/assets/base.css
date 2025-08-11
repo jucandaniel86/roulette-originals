@@ -1,0 +1,149 @@
+body {
+  box-sizing: border-box;
+  line-height: 1;
+  background: var(--color-grey-600);
+  color: var(--color-grey-200);
+  cursor: default;
+  font-family: proxima-nova, sans-serif;
+}
+
+html,
+body {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 16px;
+}
+
+*,
+:before,
+:after {
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+.scrollY {
+  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scroll: touch;
+  scrollbar-width: none;
+  scrollbar-color: var(--color-grey-400) transparent;
+  min-height: 0;
+  overflow: hidden auto;
+}
+
+.scrollX {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-grey-400) transparent;
+  overflow: auto hidden;
+  transform: translate(0);
+  -moz-transform: none !important;
+}
+
+.transition {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    outline-color,
+    text-decoration-color,
+    fill,
+    stroke,
+    --tw-gradient-from,
+    --tw-gradient-via,
+    --tw-gradient-to,
+    opacity,
+    box-shadow,
+    transform,
+    translate,
+    scale,
+    rotate,
+    filter,
+    -webkit-backdrop-filter,
+    backdrop-filter;
+  transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+  transition-duration: var(--tw-duration, var(--default-transition-duration));
+}
+
+button,
+input,
+select,
+textarea {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  border: none;
+  padding: 0;
+  line-height: 1.5;
+}
+
+button:focus,
+input:focus,
+select:focus,
+textarea :focus,
+a,
+button {
+  outline: none;
+}
+
+button,
+a {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  background: 0 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.game-layout {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: var(--spacing-8);
+}
+
+.content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-0) 3vw;
+}
+
+.game-frame {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  --game-frame-radius: var(--ds-radius-md, var(--border-radius-md));
+}
+
+.game-content {
+  border-radius: var(--ds-radius-md, var(--border-radius-md));
+  background-size: cover;
+  background-position: center;
+  background: var(--grey-700);
+  color: var(--grey-100);
+  color: var(--white);
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  min-width: 300px;
+  border-radius: var(--game-frame-radius);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 3px solid var(--grey-500);
+}

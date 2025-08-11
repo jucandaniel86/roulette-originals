@@ -1,0 +1,35 @@
+/** TOP BAR **/
+.top-bar {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  display: flex;
+  height: 25px;
+  justify-content: space-between;
+  max-width: 100%;
+  padding: 0 1rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  font-size: 0.8rem;
+  font-family: 'Archivo Narrow';
+  z-index: 9999;
+}
+
+.top-bar > span {
+  display: block;
+  flex: 1 1 0px;
+  text-align: center;
+}
+
+.top-bar > span:first-child {
+  text-align: left;
+}
+
+.top-bar > span:last-child {
+  text-align: right;
+}
+
+.top-bar > span sup {
+  font-size: 10px;
+}
