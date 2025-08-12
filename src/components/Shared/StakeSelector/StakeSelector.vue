@@ -41,9 +41,8 @@ watch(props, () => {
 </script>
 <template>
   <label class="label-wrapper">
-    <span>{{ props.title }}</span>
     <div class="input-wrap">
-      <div class="input-wrapper">
+      <div class="input-content">
         <input
           type="text"
           readonly
@@ -51,6 +50,7 @@ watch(props, () => {
           :disabled="isDisabled"
           :value="CurrencyConverter.Convert(props.options[currentOption] as number, true, false)"
         />
+        <div class="after-icon"></div>
         {{ CurrencyConverter.getCurrency() }}
       </div>
       <div class="input-buttons-wrap shadow-none">
@@ -71,28 +71,9 @@ watch(props, () => {
         </button>
       </div>
     </div>
+    <span class="label-content">{{ props.title }}</span>
   </label>
 </template>
 <style scoped>
-.stake-btn .dropdown-icon {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.stake-btn:hover .dropdown-icon {
-  color: var(--text-color);
-  background-color: var(--text-color);
-}
-
-.stake-btn.up .dropdown-icon {
-  transform: rotate(180deg);
-}
-
-.stake-btn:disabled {
-  opacity: 0.4;
-  cursor: none;
-}
-.stake-value:-webkit-inner-spin-button {
-  display: none;
-}
+@import './StakeSelector.css';
 </style>

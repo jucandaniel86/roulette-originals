@@ -1,0 +1,262 @@
+:root {
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+}
+
+.board {
+  grid-area: board;
+  display: grid;
+  gap: 0.2em;
+}
+
+.pocket {
+  position: relative;
+  border-radius: var(--space-1);
+  line-height: 1;
+  min-width: 3ch;
+  min-height: 3ch;
+  padding: var(--space-2);
+  transition-property: background-color, box-shadow, opacity;
+  transition-duration: 0.2s;
+}
+
+.pocket.colorTrue {
+  background-color: var(--poketColor);
+}
+
+.pocket.colorFalse {
+  box-shadow: inset 0 0 0 0.15em var(--poketColorBlack);
+}
+
+.pocket.colorFalse:hover {
+  box-shadow: inset 0 0 0 0.15em var(--poketColorBlackLighten);
+  background-color: var(--poketColorBlackLighten) !important;
+}
+
+.pocket.colorTrue:hover {
+  background-color: var(--poketColorLighten) !important;
+}
+
+.pocket .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.pocket .name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.pocket .chips {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pocket .chips .wrap {
+  position: relative;
+  color: #fff;
+}
+
+.range0112:hover ~ .number3,
+.range0112:hover ~ .number6,
+.range0112:hover ~ .number9,
+.range0112:hover ~ .number12,
+.range0112:hover ~ .number2,
+.range0112:hover ~ .number5,
+.range0112:hover ~ .number8,
+.range0112:hover ~ .number11,
+.range0112:hover ~ .number1,
+.range0112:hover ~ .number4,
+.range0112:hover ~ .number7,
+.range0112:hover ~ .number10,
+.range1324:hover ~ .number15,
+.range1324:hover ~ .number18,
+.range1324:hover ~ .number21,
+.range1324:hover ~ .number24,
+.range1324:hover ~ .number14,
+.range1324:hover ~ .number17,
+.range1324:hover ~ .number20,
+.range1324:hover ~ .number23,
+.range1324:hover ~ .number13,
+.range1324:hover ~ .number16,
+.range1324:hover ~ .number19,
+.range1324:hover ~ .number22,
+.range2536:hover ~ .number27,
+.range2536:hover ~ .number30,
+.range2536:hover ~ .number33,
+.range2536:hover ~ .number36,
+.range2536:hover ~ .number26,
+.range2536:hover ~ .number29,
+.range2536:hover ~ .number32,
+.range2536:hover ~ .number35,
+.range2536:hover ~ .number25,
+.range2536:hover ~ .number28,
+.range2536:hover ~ .number27,
+.range2536:hover ~ .number31,
+.range2536:hover ~ .number34,
+.row1:hover ~ .number3,
+.row1:hover ~ .number6,
+.row1:hover ~ .number9,
+.row1:hover ~ .number12,
+.row1:hover ~ .number15,
+.row1:hover ~ .number18,
+.row1:hover ~ .number21,
+.row1:hover ~ .number24,
+.row1:hover ~ .number27,
+.row1:hover ~ .number30,
+.row1:hover ~ .number33,
+.row1:hover ~ .number36,
+.row2:hover ~ .number2,
+.row2:hover ~ .number5,
+.row2:hover ~ .number8,
+.row2:hover ~ .number11,
+.row2:hover ~ .number14,
+.row2:hover ~ .number17,
+.row2:hover ~ .number20,
+.row2:hover ~ .number23,
+.row2:hover ~ .number26,
+.row2:hover ~ .number29,
+.row2:hover ~ .number32,
+.row2:hover ~ .number35,
+.row3:hover ~ .number1,
+.row3:hover ~ .number4,
+.row3:hover ~ .number7,
+.row3:hover ~ .number10,
+.row3:hover ~ .number13,
+.row3:hover ~ .number16,
+.row3:hover ~ .number19,
+.row3:hover ~ .number22,
+.row3:hover ~ .number25,
+.row3:hover ~ .number28,
+.row3:hover ~ .number31,
+.row3:hover ~ .number34,
+.colorRed:hover ~ .number3,
+.colorRed:hover ~ .number9,
+.colorRed:hover ~ .number12,
+.colorRed:hover ~ .number18,
+.colorRed:hover ~ .number21,
+.colorRed:hover ~ .number27,
+.colorRed:hover ~ .number30,
+.colorRed:hover ~ .number36,
+.colorRed:hover ~ .number5,
+.colorRed:hover ~ .number14,
+.colorRed:hover ~ .number23,
+.colorRed:hover ~ .number32,
+.colorRed:hover ~ .number1,
+.colorRed:hover ~ .number7,
+.colorRed:hover ~ .number16,
+.colorRed:hover ~ .number19,
+.colorRed:hover ~ .number25,
+.colorRed:hover ~ .number34,
+.colorBack:hover ~ .number6,
+.colorBack:hover ~ .number15,
+.colorBack:hover ~ .number24,
+.colorBack:hover ~ .number33,
+.colorBack:hover ~ .number2,
+.colorBack:hover ~ .number8,
+.colorBack:hover ~ .number11,
+.colorBack:hover ~ .number17,
+.colorBack:hover ~ .number20,
+.colorBack:hover ~ .number26,
+.colorBack:hover ~ .number29,
+.colorBack:hover ~ .number35,
+.colorBack:hover ~ .number4,
+.colorBack:hover ~ .number10,
+.colorBack:hover ~ .number13,
+.colorBack:hover ~ .number22,
+.colorBack:hover ~ .number28,
+.colorBack:hover ~ .number31,
+.range0118:hover ~ .number1,
+.range0118:hover ~ .number2,
+.range0118:hover ~ .number3,
+.range0118:hover ~ .number4,
+.range0118:hover ~ .number5,
+.range0118:hover ~ .number6,
+.range0118:hover ~ .number7,
+.range0118:hover ~ .number8,
+.range0118:hover ~ .number9,
+.range0118:hover ~ .number10,
+.range0118:hover ~ .number11,
+.range0118:hover ~ .number12,
+.range0118:hover ~ .number13,
+.range0118:hover ~ .number14,
+.range0118:hover ~ .number15,
+.range0118:hover ~ .number16,
+.range0118:hover ~ .number17,
+.range0118:hover ~ .number18,
+.range1936:hover ~ .number19,
+.range1936:hover ~ .number20,
+.range1936:hover ~ .number21,
+.range1936:hover ~ .number22,
+.range1936:hover ~ .number23,
+.range1936:hover ~ .number24,
+.range1936:hover ~ .number25,
+.range1936:hover ~ .number26,
+.range1936:hover ~ .number27,
+.range1936:hover ~ .number28,
+.range1936:hover ~ .number29,
+.range1936:hover ~ .number30,
+.range1936:hover ~ .number31,
+.range1936:hover ~ .number32,
+.range1936:hover ~ .number33,
+.range1936:hover ~ .number34,
+.range1936:hover ~ .number35,
+.range1936:hover ~ .number36,
+.parityEven:hover ~ .number2,
+.parityEven:hover ~ .number4,
+.parityEven:hover ~ .number6,
+.parityEven:hover ~ .number8,
+.parityEven:hover ~ .number10,
+.parityEven:hover ~ .number12,
+.parityEven:hover ~ .number14,
+.parityEven:hover ~ .number16,
+.parityEven:hover ~ .number18,
+.parityEven:hover ~ .number20,
+.parityEven:hover ~ .number22,
+.parityEven:hover ~ .number24,
+.parityEven:hover ~ .number26,
+.parityEven:hover ~ .number28,
+.parityEven:hover ~ .number30,
+.parityEven:hover ~ .number32,
+.parityEven:hover ~ .number34,
+.parityEven:hover ~ .number36,
+.parityOdd:hover ~ .number1,
+.parityOdd:hover ~ .number3,
+.parityOdd:hover ~ .number5,
+.parityOdd:hover ~ .number7,
+.parityOdd:hover ~ .number9,
+.parityOdd:hover ~ .number11,
+.parityOdd:hover ~ .number13,
+.parityOdd:hover ~ .number15,
+.parityOdd:hover ~ .number17,
+.parityOdd:hover ~ .number19,
+.parityOdd:hover ~ .number21,
+.parityOdd:hover ~ .number23,
+.parityOdd:hover ~ .number25,
+.parityOdd:hover ~ .number27,
+.parityOdd:hover ~ .number29,
+.parityOdd:hover ~ .number31,
+.parityOdd:hover ~ .number33,
+.parityOdd:hover ~ .number35 {
+  background-color: var(--poketColorLighten) !important;
+}

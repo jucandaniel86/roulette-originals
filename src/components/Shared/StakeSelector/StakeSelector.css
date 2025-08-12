@@ -1,0 +1,76 @@
+:root {
+}
+
+.label-wrapper {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  display: inline-flex;
+  position: relative;
+}
+
+.label-content {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: var(--text-size-default);
+  color: var(--label-color);
+  transition: var(--transition-fast);
+  padding: var(--spacing-0) var(--spacing-0) var(--spacing-1) var(--spacing-0);
+  justify-content: space-between;
+  width: 100%;
+}
+
+.input-wrap {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  box-shadow: var(--input-box-shadow);
+  border-radius: var(--ds-radius-md, var(--input-border-radius));
+}
+
+.input-content {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+}
+
+.after-icon {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--label-color);
+  z-index: 2;
+  cursor: text;
+  right: var(--ds-spacing-3, 0.75em);
+}
+
+.stake-value {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding-right: var(--ds-spacing-8, 2em);
+  background: var(--input-border);
+  padding: var(--ds-spacing-2, 0.5em);
+  width: 100%;
+  color: var(--input-color);
+  background: var(--input-background);
+  box-shadow: var(--input-box-shadow);
+  border: var(--input-border-width) solid var(--input-border);
+  border-radius: var(--ds-radius-md, var(--input-border-radius));
+  font-weight: var(--input-font-weight);
+  transition: all var(--input-transition);
+  outline: 0;
+  margin: var(--spacing-0);
+  cursor: text;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: var(--text-size-default);
+  box-shadow: none;
+}
+
+.input-button-wrap {
+  display: inline-flex;
+}

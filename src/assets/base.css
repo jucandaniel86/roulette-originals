@@ -131,7 +131,7 @@ a {
   --game-frame-radius: var(--ds-radius-md, var(--border-radius-md));
 }
 
-.game-content {
+.game-container {
   border-radius: var(--ds-radius-md, var(--border-radius-md));
   background-size: cover;
   background-position: center;
