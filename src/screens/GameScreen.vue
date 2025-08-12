@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import StatusBar from '@/components/Core/bars/StatusBar.vue'
 import Board from '@/components/Game/Board.vue'
+import GameActions from '@/components/Game/GameActions.vue'
+import GameFooter from '@/components/Game/GameFooter.vue'
+import LastBets from '@/components/Game/LastBets.vue'
+import Result from '@/components/Game/Result.vue'
 import Sidebar from '@/components/Game/Sidebar.vue'
+import Wheel from '@/components/Game/Wheel.vue'
 // import { useResize } from '@/composables/useResize'
 // import { useResizeObserver } from '@vueuse/core'
 // import { useTemplateRef } from 'vue'
@@ -15,17 +21,27 @@ import Sidebar from '@/components/Game/Sidebar.vue'
 // useResizeObserver(document.body, () => resize(GameContainer.value as any))
 </script>
 <template>
-  <div ref="gameContainer" class="game-layout">
-    <div class="content-wrapper">
-      <div class="game-frame">
-        <div class="game-container">
-          <Sidebar />
-          <div class="game-content">
-            <div class="wrap">
-              <Board />
+  <div>
+    <StatusBar />
+    <div ref="gameContainer" class="game-layout">
+      <div class="content-wrapper">
+        <div class="game-frame scrollY">
+          <div class="game-container">
+            <Sidebar />
+            <div class="game-content" style="min-height: 570px">
+              <div class="wrap">
+                <div class="game-screen">
+                  <Board />
+                  <Result />
+                  <LastBets />
+                  <GameActions />
+                  <Wheel />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <GameFooter />
       </div>
     </div>
   </div>

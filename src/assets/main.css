@@ -2,6 +2,7 @@
 @import './animations.css';
 @import './colors.css';
 
+@import './shared/fonts.css';
 @import './shared/modal.css';
 @import './shared/loading.css';
 @import './shared/top-bar.css';
@@ -9,3 +10,9 @@
 @import './components/sidebar.css';
 @import './components/game.css';
 @import './components/board.css';
+@import './components/wheel.css';
+@import './components/actions.css';
+@import './components/result.css';
+@import './components/last-bets.css';
+@import './components/footer.css';
+@import './components/tooltip.css';

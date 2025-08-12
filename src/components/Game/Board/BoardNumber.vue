@@ -29,6 +29,7 @@ const activeClass = computed(() => {
       '--poketColorLighten': props.item.colorHover,
       '--poketColorBlack': props.item.colorBlack,
       '--poketColorBlackLighten': props.item.colorBlackHover,
+      '--width': '370px',
     }"
     data-amount="0"
   >

@@ -1,0 +1,40 @@
+.game-actions {
+  grid-area: chipControls;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+
+.game-action-btn {
+  color: #fff;
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 1rem;
+  background-color: #0000;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  gap: calc(var(--spacing) * 2);
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+}
+
+.svg-icon {
+  pointer-events: none;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  flex-shrink: 0;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+}
+
+.text-grey svg {
+  color: #b1bad3;
+}

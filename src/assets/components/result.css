@@ -1,0 +1,33 @@
+.results-wrap {
+  grid-area: result;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.results-wrap .content {
+  width: 4em !important;
+  height: 4em !important;
+  border-radius: var(--border-radius-md);
+  background: var(--grey-500);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.roll-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--border-radius-md);
+  font-size: 20px;
+  font-weight: 600;
+  transition: var(--duration);
+  transition-timing-function: ease-out;
+}

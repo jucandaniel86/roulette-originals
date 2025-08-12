@@ -4,6 +4,7 @@
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
     monospace;
   --spacing: var(--ds-spacing-base);
+  --spacing-0: 0;
   --container-sm: 24rem;
   --container-lg: 32rem;
   --text-xs: 0.75rem;
@@ -46,6 +47,7 @@
   --radius-2xl: var(--ds-radius-md, var(--radius-2xl-legacy));
   --radius-4xl: var(--ds-radius-full, var(--radius-4xl-legacy));
   --radius-full: var(--ds-radius-full, var(--radius-full-legacy));
+  --spacing: 0.25rem;
   --spacing-0: calc(var(--spacing) * 0);
   --spacing-0-25: var(--ds-spacing-0-5, 1px);
   --spacing-0-5: calc(var(--spacing) * 0.5);
@@ -64,6 +66,8 @@
   --spacing-8: calc(var(--spacing) * 8);
   --spacing-10: calc(var(--spacing) * 10);
   --spacing-12: calc(var(--spacing) * 12);
+  --spacingEm-1: 1em;
+  --spacingEm-0-5: 0.5em;
   --color-black: #000;
   --color-white: #fff;
   --color-blue-100: #d0e3f9;
@@ -146,4 +150,53 @@
 
   --input-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.12);
   --input-border-radius: 0.25rem;
+
+  --game-frame-radius: 0.25rem;
+  --grey-100: rgb(213, 220, 235);
+  --grey-200: rgb(177, 186, 211);
+  --grey-400: rgb(47, 69, 83);
+  --grey-500: rgb(33, 55, 67);
+  --grey-700: rgb(15, 33, 46);
+
+  --space-2: 0.5rem;
+  --spacingEm-2-5: 2.5em;
+
+  --border-radius-md: 0.5rem;
+
+  --tooltip-background-color: #fff;
+  --tooltip-padding: 0.25rem 0;
+  --tooltip-content-padding: 8px 12px 8px 12px;
+  --tooltip-default-color: #05080a;
+  --tooltip-box-shadow: 0 10px 15px -3px #00000033, 0 4px 6px -2px #0000001a;
+  --settings-slider-filled-background: #1475e1;
+  --settings-slider-unfilled-background: #d5dceb;
+  --settings-slider-thumb-background: #213743;
+  --settings-slider-thumb-border: #213743;
+  --settings-volume-icon: url(./imgs/volume.svg);
+  --settings-volume-disabled-icon: url(./imgs/volume-disabled.svg);
+  --settings-instant-bet-icon: url(./imgs/instant-bet.svg);
+  --settings-animations-icon: url(./imgs/animations.svg);
+  --settings-max-bet-icon: url(./imgs/max-bet.svg);
+  --settings-game-info-icon: url(./imgs/game-info.svg);
+  --settings-show-player-results-icon: url(./imgs/show-player-results.svg);
+  --settings-exit-icon: url(./imgs/exit.svg);
+  --settings-action-color-on: #1475e1;
+  --settings-action-color-off: #2f4553;
+  --settings-button-padding: 12px;
+  --settings-action-gap: 0.5rem;
+  --settings-text-color: #2f4553;
+  --settings-hover-on-text-color: #1475e1;
+  --settings-hover-background-color: #b1bad3;
+  --settings-transition-duration: 0.15s;
+  --close-icon: url(./icons/close.svg);
+
+  --modal-transition: 0.5s;
+  --modal-box-shadow: 0 10px 15px -3px #00000033, 0 4px 6px -2px #0000001a, inset 0 1px #ffffff0a;
+  --fairness-content-button-padding: 0.8125rem 1rem 0.8125rem 1rem;
+  --game-modal-overlay-color: #05111a;
+
+  --color-background-base: #222425;
+  --border-radius-base: 0.25rem;
+
+  --shadows-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
 }

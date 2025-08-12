@@ -13,8 +13,8 @@
   position: relative;
   border-radius: var(--space-1);
   line-height: 1;
-  min-width: 3ch;
-  min-height: 3ch;
+  min-width: 3rem;
+  min-height: 3rem;
   padding: var(--space-2);
   transition-property: background-color, box-shadow, opacity;
   transition-duration: 0.2s;

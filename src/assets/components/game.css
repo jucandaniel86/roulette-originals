@@ -17,3 +17,17 @@
   display: flex;
   flex-grow: 1;
 }
+.game-screen {
+  width: 100%;
+  flex-grow: 1;
+  display: grid;
+  align-content: space-between;
+  justify-items: center;
+  padding: var(--spacingEm-1);
+  gap: var(--spacingEm-0-5);
+  grid-template-columns: auto minmax(max-content, 270px) auto;
+  grid-template-areas:
+    'result wheel lastBets'
+    'board board board'
+    'chipControls chipControls chipControls';
+}

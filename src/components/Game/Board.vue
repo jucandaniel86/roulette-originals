@@ -34,10 +34,7 @@ const gridTemplateAreas = () => {
   gridAreaTemplate += `"${row3.map((row) => row.gridArea).join(' ')}" `
   gridAreaTemplate += `". ${row4.map((row) => multiplyColumn(row.gridArea, row.cols)).join(' ')} ." `
   gridAreaTemplate += `". ${row5.map((row) => multiplyColumn(row.gridArea, row.cols)).join(' ')} ." `
-  console.log(
-    'gridAreaTemplate',
-    `". ${row4.map((row) => multiplyColumn(row.gridArea, row.cols)).join(' ')} ." `,
-  )
+
   return gridAreaTemplate
 }
 </script>
