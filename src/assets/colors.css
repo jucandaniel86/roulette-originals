@@ -197,6 +197,21 @@
 
   --color-background-base: #222425;
   --border-radius-base: 0.25rem;
+  --input-background: var(--grey-700);
+  --input-border-width: 2px;
+  --input-border: var(--grey-400);
 
   --shadows-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.2), 0 4px 6px -2px rgba(0, 0, 0, 0.1);
+
+  --ds-radius-md: 0.25rem;
+  --ds-radius-full: 9999px;
+  --ds-spacing-base: 0.25rem;
+  --ds-spacing-1-5: calc(var(--ds-spacing-base) * 1.5);
+
+  --label-color: var(--grey-200);
+  --label-hover-color: var(--grey-100);
+  --label-font-weight: 600;
+
+  --transition-fast: 0.2s;
+  --text-size-default: 0.875rem;
 }

@@ -18,7 +18,9 @@
       "onWin": "On Win",
       "onLoss": "On Loss",
       "stopProfit": "Stop on Profit",
-      "stopOnLoss": "Stop on Loss"
+      "stopOnLoss": "Stop on Loss",
+      "startAutobet": "Start Autobet",
+      "stopAutobet": "Stop Autobet"
     },
     "game": {
       "clear": "Clear",

@@ -1,0 +1,118 @@
+.input-label {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--label-color);
+  transition: var(--transition-fast);
+  padding: var(--spacing-0) var(--spacing-0) var(--spacing-1) var(--spacing-0);
+  justify-content: space-between;
+}
+
+.switch-wrapper {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  position: relative;
+  display: inline-flex;
+}
+
+.switch-wrapper .content {
+  width: 100%;
+  display: inline-flex;
+  background: var(--grey-400);
+  border-radius: var(--ds-radius-md, var(--border-radius-base));
+  box-shadow: var(--input-box-shadow);
+}
+
+.switch-input-buttons-wrap {
+  display: inline-flex;
+  white-space: nowrap;
+  border-top-left-radius: var(--ds-radius-md, var(--border-radius-base));
+  border-bottom-left-radius: var(--ds-radius-md, var(--border-radius-base));
+  border: var(--input-border-width) solid var(--input-border);
+}
+
+.switch-input-buttons-wrap .reset,
+.switch-input-buttons-wrap .increase {
+  color: #fff;
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 0.75rem;
+  padding-block: 0.75rem;
+  padding-inline: 0.75rem;
+  gap: calc(var(--spacing) * 2);
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+  position: relative;
+  outline: none;
+  border-radius: var(--ds-radius-md, var(--border-radius-base));
+}
+
+.switch-input-buttons-wrap .increase:hover,
+.switch-input-buttons-wrap .reset:hover {
+  background-color: #557086;
+  color: #fff;
+}
+
+.switch-input-buttons-wrap .reset.active,
+.switch-input-buttons-wrap .increase.active {
+  background-color: #0f212e !important;
+  color: #b1bad3;
+}
+
+.input-wrapper {
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  display: inline-flex;
+}
+
+.input-content {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: var(--ds-radius-md, var(--input-border-radius));
+}
+
+.inputs {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+}
+
+.input-number {
+  padding: var(--ds-spacing-2, 0.5em);
+  padding-right: var(--ds-spacing-8, 2em);
+  width: 100%;
+  color: var(--input-color);
+  background: var(--input-background);
+  border: var(--input-border-width) solid var(--input-border);
+  border-radius: var(--ds-radius-md, var(--input-border-radius));
+  font-weight: var(--input-font-weight);
+  transition: all var(--input-transition);
+  outline: 0;
+  margin: var(--spacing-0);
+  cursor: text;
+  appearance: none;
+  font-size: var(--text-size-default);
+  box-shadow: none;
+}
+
+.input-number:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.after-icon {
+  position: absolute;
+  display: flex;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--label-color);
+  z-index: 2;
+  cursor: text;
+  right: var(--ds-spacing-3, 0.75em);
+}

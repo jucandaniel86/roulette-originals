@@ -51,7 +51,7 @@
 }
 
 .tooltip-content-wrapper {
-  /* padding: var(--tooltip-content-padding); */
+  padding: var(--tooltip-content-padding);
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 1;
