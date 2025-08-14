@@ -241,3 +241,10 @@ a {
   border-bottom-right-radius: 0;
   border-bottom: 3px solid var(--grey-500);
 }
+
+@media (max-width: 914px) {
+  .game-container {
+    flex-direction: column-reverse;
+    max-width: 400px;
+  }
+}

@@ -31,3 +31,14 @@
     'board board board'
     'chipControls chipControls chipControls';
 }
+
+@media (max-width: 914px) {
+  .game-screen {
+    position: relative;
+    grid-template-columns: repeat(2, auto);
+    grid-template-areas:
+      'result board'
+      'lastBets board'
+      'chipControls chipControls';
+  }
+}

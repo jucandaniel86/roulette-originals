@@ -1,4 +1,5 @@
 import { ScreenEnum } from '@/core/enums/Screens'
+import type { GameModeType } from '@/stores/game'
 
 //Tabs Configuration
 export enum TabsEnum {
@@ -11,7 +12,7 @@ export enum TabsEnum {
 export const GAME_NAME = 'Roulette Originals'
 export const APP_STORAGE_ID = GAME_NAME.split(' ').join('_') + '_store'
 export const GAME_ID = 11510
-export const MOBILE_RESOLUTION = 915
+export const MOBILE_RESOLUTION = 914
 
 //Game Configuration
 export const MIN_RANDOM_BALL = 1
@@ -61,3 +62,8 @@ export const GAME_RATIO = 16 / 8
 
 //config
 /**http://localhost:3000/work/keno-originals/?game=cowboykeno&playToken=loadtest1012&funReal=1&fixedID=empty&brandID=0&siteID=4&gameID=11510&language=en&historyURL=HTMLTableBetList_v2.jsp&lobbyURL=https://www.multiplaygaming.com&depositURL=https://www.multiplaygaming.com&endpoint=irgs-ge.multiplaygaming.com/mprgs&RNGtoken=test23754 */
+
+export type PlayModeType = {
+  mode: GameModeType
+  label: string
+}

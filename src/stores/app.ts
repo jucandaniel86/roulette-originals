@@ -10,7 +10,7 @@ export const useAppStore = defineStore('app', () => {
     height: 0,
   })
 
-  const isMobile = computed(() => resolution.value.width < MOBILE_RESOLUTION)
+  const isMobile = computed(() => resolution.value.width <= MOBILE_RESOLUTION)
   const setResolution = (_resolution: { width: number; height: number }) => {
     resolution.value = _resolution
   }

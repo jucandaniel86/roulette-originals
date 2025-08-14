@@ -13,8 +13,8 @@
   position: relative;
   border-radius: var(--space-1);
   line-height: 1;
-  min-width: 3rem;
-  min-height: 3rem;
+  min-width: 3vh;
+  min-height: 5vh;
   padding: var(--space-2);
   transition-property: background-color, box-shadow, opacity;
   transition-duration: 0.2s;
@@ -168,24 +168,24 @@
 .colorRed:hover ~ .number19,
 .colorRed:hover ~ .number25,
 .colorRed:hover ~ .number34,
-.colorBack:hover ~ .number6,
-.colorBack:hover ~ .number15,
-.colorBack:hover ~ .number24,
-.colorBack:hover ~ .number33,
-.colorBack:hover ~ .number2,
-.colorBack:hover ~ .number8,
-.colorBack:hover ~ .number11,
-.colorBack:hover ~ .number17,
-.colorBack:hover ~ .number20,
-.colorBack:hover ~ .number26,
-.colorBack:hover ~ .number29,
-.colorBack:hover ~ .number35,
-.colorBack:hover ~ .number4,
-.colorBack:hover ~ .number10,
-.colorBack:hover ~ .number13,
-.colorBack:hover ~ .number22,
-.colorBack:hover ~ .number28,
-.colorBack:hover ~ .number31,
+.colorBlack:hover ~ .number6,
+.colorBlack:hover ~ .number15,
+.colorBlack:hover ~ .number24,
+.colorBlack:hover ~ .number33,
+.colorBlack:hover ~ .number2,
+.colorBlack:hover ~ .number8,
+.colorBlack:hover ~ .number11,
+.colorBlack:hover ~ .number17,
+.colorBlack:hover ~ .number20,
+.colorBlack:hover ~ .number26,
+.colorBlack:hover ~ .number29,
+.colorBlack:hover ~ .number35,
+.colorBlack:hover ~ .number4,
+.colorBlack:hover ~ .number10,
+.colorBlack:hover ~ .number13,
+.colorBlack:hover ~ .number22,
+.colorBlack:hover ~ .number28,
+.colorBlack:hover ~ .number31,
 .range0118:hover ~ .number1,
 .range0118:hover ~ .number2,
 .range0118:hover ~ .number3,
@@ -259,4 +259,24 @@
 .parityOdd:hover ~ .number33,
 .parityOdd:hover ~ .number35 {
   background-color: var(--poketColorLighten) !important;
+}
+
+@media (max-width: 914px) {
+  .board {
+    justify-self: flex-start;
+  }
+  .pocket {
+    min-width: 5vh;
+    min-height: 4vh;
+  }
+
+  .range0118,
+  .parityEven,
+  .range1324,
+  .range1936,
+  .range2536,
+  .range0112,
+  .parityOdd {
+    writing-mode: vertical-lr;
+  }
 }

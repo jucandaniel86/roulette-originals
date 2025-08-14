@@ -20,12 +20,8 @@
   width: 100%;
 }
 
-.input-wrap {
-  width: 100%;
-  display: flex;
-  flex-shrink: 0;
-  box-shadow: var(--input-box-shadow);
-  border-radius: var(--ds-radius-md, var(--input-border-radius));
+.input-button-wrap {
+  display: inline-flex;
 }
 
 .input-content {
@@ -48,14 +44,11 @@
 }
 
 .stake-value {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
   padding-right: var(--ds-spacing-8, 2em);
   background: var(--input-border);
   padding: var(--ds-spacing-2, 0.5em);
   width: 100%;
   color: var(--input-color);
-  background: var(--input-background);
   box-shadow: var(--input-box-shadow);
   border: var(--input-border-width) solid var(--input-border);
   border-radius: var(--ds-radius-md, var(--input-border-radius));
@@ -69,8 +62,44 @@
   appearance: none;
   font-size: var(--text-size-default);
   box-shadow: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
-.input-button-wrap {
+.input-wrap {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  box-shadow: var(--input-box-shadow);
+  border-radius: var(--ds-radius-md, var(--input-border-radius));
+}
+
+.input-button-wrap button {
+  border-radius: 0;
+  white-space: nowrap;
+  --tw-shadow: 0 0 #0000;
+  box-shadow:
+    var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow),
+    var(--tw-ring-shadow), var(--tw-shadow);
+  color: #fff;
+  font-weight: 600;
+  line-height: 1;
+  font-size: 0.875;
+  padding-block: 0.8125rem;
+  padding-inline: 1rem;
+  background-color: #2f4553;
+  gap: calc(var(--spacing) * 2);
+  justify-content: center;
+  align-items: center;
   display: inline-flex;
+  position: relative;
+}
+
+.input-button-wrap button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.input-button-wrap button.up svg {
+  transform: rotate(180deg);
 }

@@ -1,33 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { computed, ref } from 'vue'
-import StakeSelector from '../Shared/StakeSelector/StakeSelector.vue'
+import StakeSelector from '../../Shared/StakeSelector/StakeSelector.vue'
 import { storeToRefs } from 'pinia'
 import { GameModeType, useGameStore } from '@/stores/game'
 import { useSessionStore } from '@/stores/session'
 import { useStatusStore } from '@/stores/status'
-import IncreaseSelector from '../Shared/IncreaseSelector/IncreaseSelector.vue'
+import IncreaseSelector from '../../Shared/IncreaseSelector/IncreaseSelector.vue'
 import { useAutoplay } from '@/composables/useAutoplay'
 import { useValidation } from '@/composables/useValidation'
-import InputSelector from '../Shared/InputSelector/InputSelector.vue'
-import Tooltip from '../Core/tooltip/Tooltip.vue'
-
-//models
-type PlayModeType = {
-  mode: GameModeType
-  label: string
-}
-
-const modes = ref<PlayModeType[]>([
-  {
-    label: 'components.sidebar.manual',
-    mode: GameModeType.MANUAL,
-  },
-  {
-    label: 'components.sidebar.auto',
-    mode: GameModeType.AUTO,
-  },
-])
+import InputSelector from '../../Shared/InputSelector/InputSelector.vue'
+import ChipSelector from '../../Shared/ChipSelector/ChipSelector.vue'
+import { useAppStore } from '@/stores/app'
+import Tabs from './Tabs.vue'
 
 //models
 const serverLoading = ref<boolean>(false)
@@ -40,7 +25,8 @@ const { setStatusData } = useStatusStore()
 const { setGameType } = useGameStore()
 const { gameMode, sidebarDisabled } = storeToRefs(useGameStore())
 const { credit, bet } = storeToRefs(useStatusStore())
-const { autoplayOptions, runAutoplay, run, stopAutoplay } = useAutoplay()
+const { autoplayOptions } = useAutoplay()
+const { isMobile } = storeToRefs(useAppStore())
 const {
   handleNumberOfBetsChange,
   handleStopOnProfitChange,
@@ -81,29 +67,32 @@ const placeBetDisabled = computed(() => {
 </script>
 <template>
   <div class="game-sidebar scrollY">
+    <!-- AUTOBET BUTTON -->
+    <button
+      class="place-bet-btn transition"
+      v-if="gameMode === GameModeType.AUTO && isMobile"
+      :disabled="placeBetDisabled"
+    >
+      <span>{{ t('components.sidebar.startAutobet') }}</span>
+    </button>
+    <!-- /AUTOBET BUTTON -->
+
     <!-- GAME TABS -->
-    <div class="game-tabs">
-      <div class="tabs-wrapper scrollX">
-        <div class="slider">
-          <div class="wrapper">
-            <button
-              class="tabs-buttons transition"
-              :key="`Model${i}`"
-              :class="{ active: mode.mode === gameMode }"
-              v-for="(mode, i) in modes"
-              @click.prevent="setGameType(mode.mode)"
-              :disabled="sidebarDisabled"
-            >
-              {{ t(mode.label) }}
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <Tabs
+      v-if="!isMobile"
+      :active-tab="gameMode"
+      :disabled="sidebarDisabled"
+      @onChange="setGameType"
+    />
     <!-- /GAME TABS -->
+
+    <!-- CHIP SELECTOR -->
+    <ChipSelector />
+    <!-- /CHIP SELECTOR -->
 
     <!-- STAKE SELECTOR -->
     <StakeSelector
+      v-if="!isMobile || (isMobile && gameMode === GameModeType.AUTO)"
       :title="t('components.sidebar.betAmount')"
       :options="betLevels"
       @stake-selector:increase="updateBetIndex"
@@ -188,14 +177,35 @@ const placeBetDisabled = computed(() => {
     </button>
     <!-- /PLACE BET BUTTON -->
 
+    <!-- STAKE SELECTOR -->
+    <StakeSelector
+      v-if="isMobile && gameMode === GameModeType.MANUAL"
+      :title="t('components.sidebar.betAmount')"
+      :options="betLevels"
+      @stake-selector:increase="updateBetIndex"
+      @stake-selector:decrease="updateBetIndex"
+      :selected-option="betIndex"
+      :is-disabled="sidebarDisabled"
+    />
+    <!-- /STAKE SELECTOR -->
+
     <!-- AUTOBET BUTTON -->
     <button
       class="place-bet-btn transition"
-      v-if="gameMode === GameModeType.AUTO"
+      v-if="gameMode === GameModeType.AUTO && !isMobile"
       :disabled="placeBetDisabled"
     >
       <span>{{ t('components.sidebar.startAutobet') }}</span>
     </button>
     <!-- /AUTOBET BUTTON -->
+
+    <!-- GAME TABS -->
+    <Tabs
+      v-if="isMobile"
+      :active-tab="gameMode"
+      :disabled="sidebarDisabled"
+      @onChange="setGameType"
+    />
+    <!-- /GAME TABS -->
   </div>
 </template>

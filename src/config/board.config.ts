@@ -525,7 +525,7 @@ export const BOARD_CONFIG: BoardConfigType = {
     {
       label: '',
       cols: 2,
-      gridArea: 'colorBack',
+      gridArea: 'colorBlack',
       color: COLOR_GREY,
       colorHover: COLOR_GREY_LIGHT,
       colorBlack: COLOR_BLACK,
@@ -553,4 +553,26 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.BUTTON,
     },
   ],
+}
+
+export const BOARD_LAYOUT = {
+  mobile: `". . number0 number0 number0"
+        "range0118 range0112 number1 number2 number3"
+        "range0118 range0112 number4 number5 number6"
+        "parityEven range0112 number7 number8 number9"
+        "parityEven range0112 number10 number11 number12"
+        "colorRed range1324 number13 number14 number15"
+        "colorRed range1324 number16 number17 number18"
+        "colorBlack range1324 number19 number20 number21"
+        "colorBlack range1324 number22 number23 number24"
+        "parityOdd range2536 number25 number26 number27"
+        "parityOdd range2536 number28 number29 number30"
+        "range1936 range2536 number31 number32 number33"
+        "range1936 range2536 number34 number35 number36"
+        ". . row3 row2 row1"`,
+  desktop: `"number0 number3 number6 number9 number12 number15 number18 number21 number24 number27 number30 number33 number36 row1"
+        "number0 number2 number5 number8 number11 number14 number17 number20 number23 number26 number29 number32 number35 row2"
+        "number0 number1 number4 number7 number10 number13 number16 number19 number22 number25 number28 number31 number34 row3"
+        ". range0112 range0112 range0112 range0112 range1324 range1324 range1324 range1324 range2536 range2536 range2536 range2536 ."
+        ". range0118 range0118 parityEven parityEven colorRed colorRed colorBlack colorBlack parityOdd parityOdd range1936 range1936 ."`,
 }

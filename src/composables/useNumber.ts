@@ -26,9 +26,24 @@ export const useNumber = () => {
     return numbers
   }
 
+  const convertToK = (cash: number) => {
+    let cashE: any = cash
+    if (cash >= 1e3) {
+      cashE = (cash / 1e3).toFixed(1).replace(/\.0$/, '') + 'K'
+    }
+    if (cash >= 1e6) {
+      cashE = (cash / 1e6).toFixed(1).replace(/\.0$/, '') + 'M'
+    }
+    if (cash >= 1e9) {
+      cashE = (cash / 1e9).toFixed(1).replace(/\.0$/, '') + 'B'
+    }
+    return cashE
+  }
+
   return {
     convertToInt,
     generateRandomInt,
     generateRandomNumbers,
+    convertToK,
   }
 }

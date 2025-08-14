@@ -45,3 +45,19 @@
     transform: rotate(-360deg);
   }
 }
+
+@media (max-width: 914px) {
+  .wheel-house {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    z-index: 60;
+    background: var(--grey-600);
+    padding: var(--spacingEm-1);
+    display: none;
+  }
+}

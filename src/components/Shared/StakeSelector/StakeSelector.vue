@@ -2,6 +2,7 @@
 import CurrencyConverter from '@/core/core.CurrencyConvertor'
 import SoundManager from '@/core/core.Sounds'
 import { defineProps, ref, watch } from 'vue'
+import ArrowDownIcon from '../Icons/ArrowDownIcon.vue'
 
 type StakeSelectorType = {
   title?: string
@@ -50,24 +51,25 @@ watch(props, () => {
           :disabled="isDisabled"
           :value="CurrencyConverter.Convert(props.options[currentOption] as number, true, false)"
         />
-        <div class="after-icon"></div>
-        {{ CurrencyConverter.getCurrency() }}
+        <div class="after-icon">
+          {{ CurrencyConverter.getCurrency() }}
+        </div>
       </div>
-      <div class="input-buttons-wrap shadow-none">
+      <div class="input-button-wrap">
         <button
           :disabled="isDisabled || currentOption + 1 === options.length"
-          class="default transition stake-btn up"
+          class="transition up"
           @click.prevent="increase"
         >
-          <span class="dropdown-icon" />
+          <ArrowDownIcon />
         </button>
 
         <button
           :disabled="isDisabled || currentOption === 0"
-          class="default transition stake-btn"
+          class="transition"
           @click.prevent="decrease"
         >
-          <span class="dropdown-icon" />
+          <ArrowDownIcon />
         </button>
       </div>
     </div>

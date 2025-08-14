@@ -1,10 +1,15 @@
 <script setup lang="ts">
-import { BOARD_CONFIG, BoardConfigButtonEnum } from '@/config/board.config'
+import { BOARD_CONFIG, BOARD_LAYOUT, BoardConfigButtonEnum } from '@/config/board.config'
 import BoardNumber from './Board/BoardNumber.vue'
 import BoardButton from './Board/BoardButton.vue'
+import { computed } from 'vue'
+import { useAppStore } from '@/stores/app'
+import { storeToRefs } from 'pinia'
+
+//composables
+const { isMobile } = storeToRefs(useAppStore())
 
 //styles
-const maxWidth = 750
 const rows = 5
 
 //numbers
@@ -25,27 +30,19 @@ const buttons = [
   ...row5.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
 ]
 
-const gridTemplateAreas = () => {
-  const multiplyColumn = (gridArea: string, cols: number) => Array(cols).fill(gridArea).join(' ')
-
-  let gridAreaTemplate = ''
-  gridAreaTemplate += `"${row1.map((row) => row.gridArea).join(' ')}" `
-  gridAreaTemplate += `"${row2.map((row) => row.gridArea).join(' ')}" `
-  gridAreaTemplate += `"${row3.map((row) => row.gridArea).join(' ')}" `
-  gridAreaTemplate += `". ${row4.map((row) => multiplyColumn(row.gridArea, row.cols)).join(' ')} ." `
-  gridAreaTemplate += `". ${row5.map((row) => multiplyColumn(row.gridArea, row.cols)).join(' ')} ." `
-
-  return gridAreaTemplate
-}
+const layout = computed(() => (isMobile.value ? BOARD_LAYOUT.mobile : BOARD_LAYOUT.desktop))
+const maxWidth = computed(() => (isMobile.value ? '' : '750px'))
+const width = computed(() => (isMobile.value ? 'max-content' : '100%'))
+const gridTemplateRows = computed(() => (isMobile.value ? 'none' : `repeat(${rows}, 1fr)`))
 </script>
 <template>
   <div
     class="board"
     :style="{
-      width: `100%`,
-      maxWidth: `${maxWidth}px`,
-      gridTemplateAreas: gridTemplateAreas(),
-      gridTemplateRows: `repeat(${rows}, 1fr)`,
+      width: width,
+      maxWidth: maxWidth,
+      gridTemplateAreas: layout,
+      gridTemplateRows: gridTemplateRows,
     }"
   >
     <BoardButton v-for="(item, i) in buttons" :key="`BoardButton${i}`" :item="item" />

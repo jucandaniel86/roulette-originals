@@ -22,14 +22,6 @@ onMounted(async () => {
     width: window.innerWidth,
     height: window.innerHeight,
   })
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  window &&
-    window?.addEventListener('resize', () => {
-      setResolution({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
-    })
 })
 </script>
 

@@ -207,6 +207,8 @@
   --ds-radius-full: 9999px;
   --ds-spacing-base: 0.25rem;
   --ds-spacing-1-5: calc(var(--ds-spacing-base) * 1.5);
+  --ds-spacing-3: calc(var(--ds-spacing-base) * 3);
+  --ds-spacing-8: calc(var(--ds-spacing-base) * 8);
 
   --label-color: var(--grey-200);
   --label-hover-color: var(--grey-100);

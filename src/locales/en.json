@@ -22,6 +22,9 @@
       "startAutobet": "Start Autobet",
       "stopAutobet": "Stop Autobet"
     },
+    "chipSelector": {
+      "chipValue": "Chip Value"
+    },
     "game": {
       "clear": "Clear",
       "undo": "Undo"
