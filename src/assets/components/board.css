@@ -266,8 +266,8 @@
     justify-self: flex-start;
   }
   .pocket {
-    min-width: 5vh;
-    min-height: 4vh;
+    min-width: 5ch;
+    min-height: 4ch;
   }
 
   .range0118,

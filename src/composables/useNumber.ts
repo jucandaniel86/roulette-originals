@@ -40,7 +40,10 @@ export const useNumber = () => {
     return cashE
   }
 
+  const radians = (r: number) => (r * Math.PI) / 180
+
   return {
+    radians,
     convertToInt,
     generateRandomInt,
     generateRandomNumbers,
