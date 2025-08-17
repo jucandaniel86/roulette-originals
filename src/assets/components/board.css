@@ -20,6 +20,12 @@
   transition-duration: 0.2s;
 }
 
+.pocket:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .pocket.colorTrue {
   background-color: var(--poketColor);
 }

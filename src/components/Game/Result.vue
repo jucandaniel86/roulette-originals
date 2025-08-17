@@ -1,8 +1,8 @@
 <script setup lang="ts">
+import { useFindBoardItem } from '@/composables/useFindBoardItem'
 import { ref, watch } from 'vue'
 
 const transform = ref(' translateY(100%)')
-const background = 'rgb(254, 34, 71)'
 
 //props
 type ResultComponentT = {
@@ -11,12 +11,18 @@ type ResultComponentT = {
 }
 const props = defineProps<ResultComponentT>()
 
+//composables
+const { find } = useFindBoardItem()
+
+const currentNumber = ref(find(props.result))
+
 watch(props, () => {
   if (props.display) {
     transform.value = 'translateY(0)'
   } else {
     transform.value = 'translateY(100%)'
   }
+  currentNumber.value = find(props.result)
 })
 </script>
 <template>
@@ -26,7 +32,7 @@ watch(props, () => {
         class="roll-up"
         :style="{
           '--duration': '200ms',
-          background: background,
+          background: currentNumber?.color,
           transform: transform,
         }"
         >{{ props.result }}

@@ -21,7 +21,7 @@ export const MAX_SELECTED_NUMBERS = 10
 export const MIN_SELECTED_NUMBERS = 2
 
 export const AUTOPLAY_MAX_NO_BETS = 100
-export const PAST_RESULTS_LIMIT = 6
+export const PAST_RESULTS_LIMIT = 5
 export const PAST_RESULTS_MOBILE_LIMIT = 3
 
 export const DEFAULT_ROOM = 'pick5'
@@ -47,6 +47,7 @@ GAME_SOUNDS.set('SPIN', 'spin.mp3')
 GAME_SOUNDS.set('DROP', 'drop.mp3')
 GAME_SOUNDS.set('WIN', 'win.mp3')
 GAME_SOUNDS.set('LOSE', 'lose.mp3')
+GAME_SOUNDS.set('MOVE', 'move.wav')
 
 //WEBSOCKET CONFIG
 export const WS_RECONNECT = false

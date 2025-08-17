@@ -2,6 +2,7 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { GAME_NAME } from '@/config/app.config'
 import * as p from '../../package.json'
+import type { PrizeType } from '@/core/models/bet/PublicStateResponseData'
 
 export enum GameStates {
   INIT = 'init',
@@ -38,15 +39,25 @@ export type GameResultsType = {
   bet: number
 }
 
-export type PastResultType = {
-  id: string
-  win: number
-}
-
 export type RoulleteBetType = {
   bet: number
   index: number
   chips: number
+}
+
+export type PlayerResultsType = {
+  totalBet: number
+  totalWin: number
+  multiplier: number
+  isWon: boolean
+}
+
+export type PastResultType = {
+  id: string
+  playerResults: PlayerResultsType
+  prizes: PrizeType[]
+  date: string
+  result: number
 }
 
 export const useGameStore = defineStore('game', () => {
@@ -69,6 +80,13 @@ export const useGameStore = defineStore('game', () => {
   const resultsHistory = ref<PastResultType[]>([])
 
   const sidebarDisabled = ref<boolean>(false)
+
+  const playerResults = ref<PlayerResultsType>({
+    totalBet: 0,
+    totalWin: 0,
+    multiplier: 0,
+    isWon: false,
+  })
 
   const setDisabledInteraction = (_payload: boolean) => {
     disableInteraction.value = _payload
@@ -151,6 +169,18 @@ export const useGameStore = defineStore('game', () => {
 
   const totalBet = computed(() => bets.value.reduce((prevBet, currBet) => prevBet + currBet.bet, 0))
 
+  const setPlayerResults = (totalWin: number, prizes: PrizeType[], isWon: boolean) => {
+    const totalBet: any = prizes.reduce((prevPrize, crrPrize) => prevPrize + crrPrize.bet, 0)
+
+    const multiplier = totalBet / totalWin
+    playerResults.value = {
+      totalWin,
+      totalBet,
+      multiplier,
+      isWon,
+    }
+  }
+
   return {
     bets,
     betsHistory,
@@ -163,6 +193,7 @@ export const useGameStore = defineStore('game', () => {
     resultsHistory,
     sidebarDisabled,
     result,
+    playerResults,
     disableSidebar,
     setDisabledInteraction,
     setGameType,
@@ -172,5 +203,6 @@ export const useGameStore = defineStore('game', () => {
     clear,
     undo,
     setResult,
+    setPlayerResults,
   }
 })

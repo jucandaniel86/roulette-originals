@@ -7,6 +7,7 @@ type BoardButtonType = {
   item: BoardConfigButtonType
   bet?: RoulleteBetType
   isWinner?: boolean
+  isDisabled: boolean
 }
 
 //props
@@ -71,6 +72,7 @@ const chips = computed(() => {
     :data-testid="props.item.gridArea"
     data-amount="0"
     @click.prevent="handleClick"
+    :disabled="props.isDisabled"
     :style="{
       gridArea: props.item.gridArea,
       '--poketColor': props.item.color,

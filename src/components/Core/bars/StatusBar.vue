@@ -2,8 +2,9 @@
 import { useGameStore } from '@/stores/game'
 import ClockStatus from '../clock/ClockStatus.vue'
 import { useStatusStore } from '@/stores/status'
+import { storeToRefs } from 'pinia'
 
-const { balance } = useStatusStore()
+const { balance } = storeToRefs(useStatusStore())
 const { gameName, version } = useGameStore()
 </script>
 <template>

@@ -13,7 +13,7 @@ const wheel = useTemplateRef<HTMLCanvasElement>('wheel')
 
 //composables
 const { setGameState } = useGameStore()
-const { gameState, result } = storeToRefs(useGameStore())
+const { gameState, result, playerResults } = storeToRefs(useGameStore())
 
 //animation
 const WAnim = new WheelAnimation()
@@ -66,6 +66,14 @@ watch(gameState, () => {
     case GameStates.BETTING:
       WAnim.changeResult(false, false)
       SoundManager.Instance().stop('SPIN')
+      break
+    case GameStates.RESULTS:
+      if (playerResults.value.isWon) {
+        SoundManager.Instance().play('WIN')
+      } else {
+        SoundManager.Instance().play('LOSE')
+      }
+
       break
   }
 })

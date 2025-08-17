@@ -6,6 +6,7 @@ import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
 import { GameStates, useGameStore } from '@/stores/game'
 import { useStatusStore } from '@/stores/status'
+import SoundManager from '@/core/core.Sounds'
 
 //composables
 const { isMobile } = storeToRefs(useAppStore())
@@ -48,6 +49,7 @@ const handleAddBet = (betID: number) => {
     chips: 1,
   })
   setGameState(GameStates.BETTING)
+  SoundManager.Instance().play('MOVE')
 }
 const getCurrentBet = (betID: number) => bets.value.find((bet) => bet.index === betID)
 </script>
@@ -66,6 +68,7 @@ const getCurrentBet = (betID: number) => bets.value.find((bet) => bet.index === 
       :key="`BoardButton${i}`"
       :item="item"
       @onClick="handleAddBet"
+      :is-disabled="gameState === GameStates.SPINNING"
     />
 
     <BoardButton
@@ -73,6 +76,7 @@ const getCurrentBet = (betID: number) => bets.value.find((bet) => bet.index === 
       :key="`BoardButton${i}`"
       :item="item"
       :bet="getCurrentBet(item.betID)"
+      :is-disabled="gameState === GameStates.SPINNING"
       :isWinner="gameState === GameStates.RESULTS && item.label === result"
       @onClick="handleAddBet"
     />

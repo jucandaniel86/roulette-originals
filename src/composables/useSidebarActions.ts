@@ -3,14 +3,17 @@ import SoundManager from '@/core/core.Sounds'
 import { GameStates, useGameStore } from '@/stores/game'
 import { useStatusStore } from '@/stores/status'
 import { storeToRefs } from 'pinia'
+import { useTicketHistory } from './useTicketHistory'
 
 export const useSidebarActions = () => {
   const handlePlaceBet = async () => {
     SoundManager.Instance().play('PLACE_BET')
 
-    const { setResultsHistory, setDisabledInteraction, setGameState, setResult } = useGameStore()
+    const { setResultsHistory, setDisabledInteraction, setGameState, setResult, setPlayerResults } =
+      useGameStore()
     const { setStatusData, credit } = useStatusStore()
     const { bets, totalBet } = storeToRefs(useGameStore())
+    const { formatTicket } = useTicketHistory()
 
     setStatusData({
       credit: credit - totalBet.value,
@@ -19,27 +22,13 @@ export const useSidebarActions = () => {
     const gameData = await NetworkController.Instance().bet(bets.value)
 
     if (gameData.publicState) {
+      const TotalWin = gameData.publicState.totalWin
+
       setResult(gameData.publicState.result)
       setGameState(GameStates.SPINNING)
-      const TotalWin = gameData.publicState.totalWin
-      // let PlayerBet = bet
+      setPlayerResults(TotalWin, gameData.publicState.prizes, gameData.publicState.isWon)
 
-      // if (
-      //   Array.isArray(gameData.publicState.features[0].playersData[0].playerTurn.tickets) &&
-      //   typeof gameData.publicState.features[0].playersData[0].playerTurn.tickets[0] !== 'undefined'
-      // ) {
-      //   PlayerBet = gameData.publicState.features[0].playersData[0].playerTurn.tickets[0]?.bet
-      // }
-
-      // setDisplayResults(true)
-      // setResults({
-      //   win: TotalWin,
-      //   bet: PlayerBet,
-      // })
-      setResultsHistory({
-        win: TotalWin,
-        id: crypto.randomUUID(),
-      })
+      setResultsHistory(formatTicket(gameData))
       setDisabledInteraction(false)
     }
 

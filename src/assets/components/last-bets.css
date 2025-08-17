@@ -70,3 +70,20 @@
     transform: translateY(-100%);
   }
 }
+
+.last-bets-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: var(--spacingEm-2-5);
+  height: var(--spacingEm-2-5);
+  font-weight: 600;
+  transition-property: background-color, opacity;
+  transition-duration: 0.2s;
+  background-color: var(--bg-color);
+}
+
+.last-bets-btn:hover {
+  background-color: var(--bg-color-lighten);
+}

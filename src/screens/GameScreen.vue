@@ -21,7 +21,7 @@ const GameContainer = useTemplateRef('gameContainer')
 //composables
 const { resize } = useResize()
 const { undo, clear } = useGameStore()
-const { betsHistory, gameState, result } = storeToRefs(useGameStore())
+const { betsHistory, gameState, result, playerResults } = storeToRefs(useGameStore())
 
 //@ts-ignore
 useResizeObserver(document.body, () => resize(GameContainer.value as any))
@@ -39,7 +39,10 @@ useResizeObserver(document.body, () => resize(GameContainer.value as any))
                 <div class="game-screen">
                   <Board />
                   <Result :display="gameState === GameStates.RESULTS" :result="result" />
-                  <GameResult :display="gameState === GameStates.RESULTS" :result="result" />
+                  <GameResult
+                    :display="gameState === GameStates.RESULTS && playerResults?.isWon"
+                    :result="result"
+                  />
                   <LastBets />
                   <GameActions
                     @onUndo="undo"
