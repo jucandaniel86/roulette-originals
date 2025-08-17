@@ -21,6 +21,7 @@ export type BoardConfigButtonType = {
   colorBlack: string
   colorBlackHover: string
   type: BoardConfigButtonEnum
+  betID: number
 }
 
 export type BoardConfigType = {
@@ -42,6 +43,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number0',
       cols: 1,
+      betID: 0,
     },
     {
       label: 3,
@@ -52,6 +54,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number3',
       cols: 1,
+      betID: 3,
     },
     {
       label: 6,
@@ -62,6 +65,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number6',
       cols: 1,
+      betID: 6,
     },
     {
       label: 9,
@@ -72,6 +76,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number9',
       cols: 1,
+      betID: 9,
     },
     {
       label: 12,
@@ -82,6 +87,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number12',
       cols: 1,
+      betID: 12,
     },
     {
       label: 15,
@@ -92,6 +98,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number15',
       cols: 1,
+      betID: 15,
     },
     {
       label: 18,
@@ -102,6 +109,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number18',
       cols: 1,
+      betID: 18,
     },
     {
       label: 21,
@@ -112,6 +120,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number21',
       cols: 1,
+      betID: 21,
     },
     {
       label: 24,
@@ -122,6 +131,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number24',
       cols: 1,
+      betID: 24,
     },
     {
       label: 27,
@@ -132,6 +142,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number27',
       cols: 1,
+      betID: 27,
     },
     {
       label: 30,
@@ -142,6 +153,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number30',
       cols: 1,
+      betID: 30,
     },
     {
       label: 33,
@@ -152,6 +164,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number33',
       cols: 1,
+      betID: 33,
     },
     {
       label: 36,
@@ -162,6 +175,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number36',
       cols: 1,
+      betID: 36,
     },
     {
       label: '2:1',
@@ -172,6 +186,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.BUTTON,
       gridArea: 'row1',
       cols: 1,
+      betID: 147,
     },
   ],
   row2: [
@@ -184,6 +199,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number0',
       cols: 1,
+      betID: 0,
     },
     {
       label: 2,
@@ -194,6 +210,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number2',
       cols: 1,
+      betID: 2,
     },
     {
       label: 5,
@@ -204,6 +221,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number5',
       cols: 1,
+      betID: 5,
     },
     {
       label: 8,
@@ -214,6 +232,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number8',
       cols: 1,
+      betID: 8,
     },
     {
       label: 11,
@@ -224,6 +243,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number11',
       cols: 1,
+      betID: 11,
     },
     {
       label: 14,
@@ -234,6 +254,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number14',
       cols: 1,
+      betID: 14,
     },
     {
       label: 17,
@@ -244,6 +265,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number17',
       cols: 1,
+      betID: 17,
     },
     {
       label: 20,
@@ -254,6 +276,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number20',
       cols: 1,
+      betID: 20,
     },
     {
       label: 23,
@@ -264,6 +287,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number23',
       cols: 1,
+      betID: 23,
     },
     {
       label: 26,
@@ -274,6 +298,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number26',
       cols: 1,
+      betID: 26,
     },
     {
       label: 29,
@@ -284,6 +309,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number29',
       cols: 1,
+      betID: 29,
     },
     {
       label: 32,
@@ -294,6 +320,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number32',
       cols: 1,
+      betID: 32,
     },
     {
       label: 35,
@@ -304,6 +331,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number35',
       cols: 1,
+      betID: 35,
     },
     {
       label: '2:1',
@@ -314,6 +342,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.BUTTON,
       gridArea: 'row2',
       cols: 1,
+      betID: 146,
     },
   ],
   row3: [
@@ -326,6 +355,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.BUTTON,
       gridArea: 'number0',
       cols: 1,
+      betID: 0,
     },
     {
       label: 1,
@@ -336,6 +366,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number1',
       cols: 1,
+      betID: 1,
     },
     {
       label: 4,
@@ -346,6 +377,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number4',
       cols: 1,
+      betID: 4,
     },
     {
       label: 7,
@@ -356,6 +388,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number7',
       cols: 1,
+      betID: 7,
     },
     {
       label: 10,
@@ -366,6 +399,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number10',
       cols: 1,
+      betID: 10,
     },
     {
       label: 13,
@@ -376,6 +410,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number13',
       cols: 1,
+      betID: 13,
     },
     {
       label: 16,
@@ -386,6 +421,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number16',
       cols: 1,
+      betID: 16,
     },
     {
       label: 19,
@@ -396,6 +432,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number19',
       cols: 1,
+      betID: 19,
     },
     {
       label: 22,
@@ -406,6 +443,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number22',
       cols: 1,
+      betID: 22,
     },
     {
       label: 25,
@@ -416,6 +454,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number25',
       cols: 1,
+      betID: 25,
     },
     {
       label: 28,
@@ -426,6 +465,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number28',
       cols: 1,
+      betID: 28,
     },
     {
       label: 31,
@@ -436,6 +476,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number31',
       cols: 1,
+      betID: 31,
     },
     {
       label: 34,
@@ -446,6 +487,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.NUMBER,
       gridArea: 'number34',
       cols: 1,
+      betID: 34,
     },
     {
       label: '2:1',
@@ -456,6 +498,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       type: BoardConfigButtonEnum.BUTTON,
       gridArea: 'row3',
       cols: 1,
+      betID: 145,
     },
   ],
 
@@ -469,6 +512,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 148,
     },
     {
       label: '13 to 24',
@@ -479,6 +523,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 149,
     },
     {
       label: '25 to 36',
@@ -489,6 +534,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 150,
     },
   ],
   row5: [
@@ -501,6 +547,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 151,
     },
     {
       label: 'Even',
@@ -511,6 +558,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 153,
     },
     {
       label: '',
@@ -521,6 +569,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 155,
     },
     {
       label: '',
@@ -531,6 +580,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 156,
     },
     {
       label: 'Odd',
@@ -541,6 +591,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 154,
     },
     {
       label: '19 to 36',
@@ -551,6 +602,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       colorBlack: COLOR_BLACK,
       colorBlackHover: COLOR_BLACK_LIGHT,
       type: BoardConfigButtonEnum.BUTTON,
+      betID: 152,
     },
   ],
 }

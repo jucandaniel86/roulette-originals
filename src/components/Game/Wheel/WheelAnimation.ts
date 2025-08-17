@@ -76,7 +76,7 @@ export default class WheelAnimation {
   }
   public curveTimeline: any
   public curves!: any[]
-  public Ball: WheelBall
+  public Ball!: WheelBall
   public interval: any
 
   public dropCallback!: () => void
@@ -86,7 +86,9 @@ export default class WheelAnimation {
    *
    * @param {WheelAnimationSetup} param0
    */
-  constructor({ ctx, width, height, ballStartDropCallback }: WheelAnimationSetup) {
+  constructor() {}
+
+  public init({ ctx, width, height, ballStartDropCallback }: WheelAnimationSetup) {
     this.ctx = ctx
     this.width = width
     this.height = height
@@ -100,6 +102,8 @@ export default class WheelAnimation {
       solidRadius: this.wheelSizes.radius - this.circleInnerPadding - 40,
     }
     this.ballRadius = Math.round(this.circleInnerPadding / 3.5)
+
+    this.changeStartAnimationAtDegrees(0)
     this.Ball = new WheelBall({
       ctx,
       wheelSizes: this.wheelSizes,
@@ -109,7 +113,6 @@ export default class WheelAnimation {
     })
 
     this.ballStartDropCallback = ballStartDropCallback
-    this.changeStartAnimationAtDegrees(0)
   }
 
   public getCurrentCurveXY(e: number, n: number) {

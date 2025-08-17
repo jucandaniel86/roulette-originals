@@ -12,7 +12,7 @@
   border-top-right-radius: var(--game-frame-radius);
 }
 
-.game-content .wrap {
+.game-content > .wrap {
   width: 100%;
   display: flex;
   flex-grow: 1;

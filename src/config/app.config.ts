@@ -11,7 +11,7 @@ export enum TabsEnum {
 
 export const GAME_NAME = 'Roulette Originals'
 export const APP_STORAGE_ID = GAME_NAME.split(' ').join('_') + '_store'
-export const GAME_ID = 11510
+export const GAME_ID = 11067
 export const MOBILE_RESOLUTION = 914
 
 //Game Configuration
@@ -43,6 +43,10 @@ GAME_SOUNDS.set('CLICK', 'click.mp3')
 GAME_SOUNDS.set('CANT_BET', 'cant_bet.mp3')
 GAME_SOUNDS.set('PLACE_BET', 'play_click.mp3')
 GAME_SOUNDS.set('REVEALED', 'revealed.mp3')
+GAME_SOUNDS.set('SPIN', 'spin.mp3')
+GAME_SOUNDS.set('DROP', 'drop.mp3')
+GAME_SOUNDS.set('WIN', 'win.mp3')
+GAME_SOUNDS.set('LOSE', 'lose.mp3')
 
 //WEBSOCKET CONFIG
 export const WS_RECONNECT = false
@@ -67,3 +71,10 @@ export type PlayModeType = {
   mode: GameModeType
   label: string
 }
+
+export const STAKE_COLORS = new Map()
+STAKE_COLORS.set(1, '#FFFFFF')
+STAKE_COLORS.set(5, '#ea9c59')
+STAKE_COLORS.set(10, '#d0fd60')
+STAKE_COLORS.set(50, '#000000')
+STAKE_COLORS.set(100, '#b73acb')

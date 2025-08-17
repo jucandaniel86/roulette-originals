@@ -5,18 +5,23 @@ import { useTemplateRef } from 'vue'
 
 //components
 import StatusBar from '@/components/Core/bars/StatusBar.vue'
-import Board from '@/components/Game/Board.vue'
+import Board from '@/components/Game/Board/Board.vue'
 import GameActions from '@/components/Game/GameActions.vue'
 import GameFooter from '@/components/Game/GameFooter.vue'
 import LastBets from '@/components/Game/LastBets.vue'
 import Result from '@/components/Game/Result.vue'
 import Sidebar from '@/components/Game/Sidebar/Sidebar.vue'
 import Wheel from '@/components/Game/Wheel.vue'
+import { GameStates, useGameStore } from '@/stores/game'
+import { storeToRefs } from 'pinia'
+import GameResult from '@/components/Game/GameResult/GameResult.vue'
 
 const GameContainer = useTemplateRef('gameContainer')
 
 //composables
 const { resize } = useResize()
+const { undo, clear } = useGameStore()
+const { betsHistory, gameState, result } = storeToRefs(useGameStore())
 
 //@ts-ignore
 useResizeObserver(document.body, () => resize(GameContainer.value as any))
@@ -33,9 +38,14 @@ useResizeObserver(document.body, () => resize(GameContainer.value as any))
               <div class="wrap">
                 <div class="game-screen">
                   <Board />
-                  <Result />
+                  <Result :display="gameState === GameStates.RESULTS" :result="result" />
+                  <GameResult :display="gameState === GameStates.RESULTS" :result="result" />
                   <LastBets />
-                  <GameActions />
+                  <GameActions
+                    @onUndo="undo"
+                    @onClear="clear"
+                    :is-disabled="betsHistory.length === 0"
+                  />
                   <Wheel />
                 </div>
               </div>

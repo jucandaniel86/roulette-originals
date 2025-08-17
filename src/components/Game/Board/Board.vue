@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { BOARD_CONFIG, BOARD_LAYOUT, BoardConfigButtonEnum } from '@/config/board.config'
-import BoardNumber from './Board/BoardNumber.vue'
-import BoardButton from './Board/BoardButton.vue'
+import BoardButton from './BoardButton.vue'
 import { computed } from 'vue'
 import { useAppStore } from '@/stores/app'
 import { storeToRefs } from 'pinia'
+import { GameStates, useGameStore } from '@/stores/game'
+import { useStatusStore } from '@/stores/status'
 
 //composables
 const { isMobile } = storeToRefs(useAppStore())
+const { addBets, setGameState } = useGameStore()
+const { bet } = storeToRefs(useStatusStore())
+const { bets, result, gameState } = storeToRefs(useGameStore())
 
 //styles
 const rows = 5
@@ -30,10 +34,22 @@ const buttons = [
   ...row5.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
 ]
 
+//computed
 const layout = computed(() => (isMobile.value ? BOARD_LAYOUT.mobile : BOARD_LAYOUT.desktop))
 const maxWidth = computed(() => (isMobile.value ? '' : '750px'))
 const width = computed(() => (isMobile.value ? 'max-content' : '100%'))
 const gridTemplateRows = computed(() => (isMobile.value ? 'none' : `repeat(${rows}, 1fr)`))
+
+//methods
+const handleAddBet = (betID: number) => {
+  addBets({
+    index: betID,
+    bet: bet.value,
+    chips: 1,
+  })
+  setGameState(GameStates.BETTING)
+}
+const getCurrentBet = (betID: number) => bets.value.find((bet) => bet.index === betID)
 </script>
 <template>
   <div
@@ -45,7 +61,20 @@ const gridTemplateRows = computed(() => (isMobile.value ? 'none' : `repeat(${row
       gridTemplateRows: gridTemplateRows,
     }"
   >
-    <BoardButton v-for="(item, i) in buttons" :key="`BoardButton${i}`" :item="item" />
-    <BoardNumber v-for="(item, i) in numbers" :key="`Number${i}`" :item="item" />
+    <BoardButton
+      v-for="(item, i) in buttons"
+      :key="`BoardButton${i}`"
+      :item="item"
+      @onClick="handleAddBet"
+    />
+
+    <BoardButton
+      v-for="(item, i) in numbers"
+      :key="`BoardButton${i}`"
+      :item="item"
+      :bet="getCurrentBet(item.betID)"
+      :isWinner="gameState === GameStates.RESULTS && item.label === result"
+      @onClick="handleAddBet"
+    />
   </div>
 </template>

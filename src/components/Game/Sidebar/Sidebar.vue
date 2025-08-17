@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { computed, ref } from 'vue'
-import StakeSelector from '../../Shared/StakeSelector/StakeSelector.vue'
+import TotalBet from '../../Shared/TotalBet/TotalBet.vue'
 import { storeToRefs } from 'pinia'
 import { GameModeType, useGameStore } from '@/stores/game'
 import { useSessionStore } from '@/stores/session'
@@ -13,6 +13,7 @@ import InputSelector from '../../Shared/InputSelector/InputSelector.vue'
 import ChipSelector from '../../Shared/ChipSelector/ChipSelector.vue'
 import { useAppStore } from '@/stores/app'
 import Tabs from './Tabs.vue'
+import { useSidebarActions } from '@/composables/useSidebarActions'
 
 //models
 const serverLoading = ref<boolean>(false)
@@ -23,8 +24,8 @@ const { betLevels, betIndex } = storeToRefs(useSessionStore())
 const { setSessionData } = useSessionStore()
 const { setStatusData } = useStatusStore()
 const { setGameType } = useGameStore()
-const { gameMode, sidebarDisabled } = storeToRefs(useGameStore())
-const { credit, bet } = storeToRefs(useStatusStore())
+const { gameMode, sidebarDisabled, totalBet, bets } = storeToRefs(useGameStore())
+const { credit } = storeToRefs(useStatusStore())
 const { autoplayOptions } = useAutoplay()
 const { isMobile } = storeToRefs(useAppStore())
 const {
@@ -35,6 +36,7 @@ const {
   handleIncreaseByLossChange,
   validationErrorRef,
 } = useValidation()
+const { handlePlaceBet } = useSidebarActions()
 
 //methods
 const updateBetIndex = (value: number) => {
@@ -48,7 +50,7 @@ const updateBetIndex = (value: number) => {
 
 //computed
 const placeBetDisabled = computed(() => {
-  if (credit.value < bet.value) {
+  if (credit.value < totalBet.value) {
     return true
   }
 
@@ -56,7 +58,7 @@ const placeBetDisabled = computed(() => {
     return true
   }
 
-  if (gameMode.value === GameModeType.AUTO && validationErrorRef.value.size > 0) {
+  if (validationErrorRef.value.size > 0 || bets.value.length === 0) {
     return true
   }
 
@@ -72,6 +74,7 @@ const placeBetDisabled = computed(() => {
       class="place-bet-btn transition"
       v-if="gameMode === GameModeType.AUTO && isMobile"
       :disabled="placeBetDisabled"
+      @click.prevent="handlePlaceBet"
     >
       <span>{{ t('components.sidebar.startAutobet') }}</span>
     </button>
@@ -87,20 +90,21 @@ const placeBetDisabled = computed(() => {
     <!-- /GAME TABS -->
 
     <!-- CHIP SELECTOR -->
-    <ChipSelector />
+    <ChipSelector
+      :chips="betLevels"
+      :default-value="betIndex"
+      :is-disabled="sidebarDisabled"
+      @onChange="updateBetIndex"
+    />
     <!-- /CHIP SELECTOR -->
 
-    <!-- STAKE SELECTOR -->
-    <StakeSelector
-      v-if="!isMobile || (isMobile && gameMode === GameModeType.AUTO)"
+    <!-- TOTAL BET -->
+    <TotalBet
       :title="t('components.sidebar.betAmount')"
-      :options="betLevels"
-      @stake-selector:increase="updateBetIndex"
-      @stake-selector:decrease="updateBetIndex"
-      :selected-option="betIndex"
+      :total-bet="totalBet"
       :is-disabled="sidebarDisabled"
     />
-    <!-- /STAKE SELECTOR -->
+    <!-- /TOTAL BET -->
 
     <!-- NUMBER OF BETS -->
     <InputSelector
@@ -172,22 +176,11 @@ const placeBetDisabled = computed(() => {
       class="place-bet-btn transition"
       v-if="gameMode === GameModeType.MANUAL"
       :disabled="placeBetDisabled"
+      @click.prevent="handlePlaceBet"
     >
       <span>{{ t('components.sidebar.bet') }}</span>
     </button>
     <!-- /PLACE BET BUTTON -->
-
-    <!-- STAKE SELECTOR -->
-    <StakeSelector
-      v-if="isMobile && gameMode === GameModeType.MANUAL"
-      :title="t('components.sidebar.betAmount')"
-      :options="betLevels"
-      @stake-selector:increase="updateBetIndex"
-      @stake-selector:decrease="updateBetIndex"
-      :selected-option="betIndex"
-      :is-disabled="sidebarDisabled"
-    />
-    <!-- /STAKE SELECTOR -->
 
     <!-- AUTOBET BUTTON -->
     <button

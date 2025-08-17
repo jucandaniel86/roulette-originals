@@ -1,14 +1,13 @@
-import { ref } from 'vue'
-import { defineStore, storeToRefs } from 'pinia'
-import { DEFAULT_ROOM, DEFAULT_TAB, GAME_NAME, TabsEnum } from '@/config/app.config'
-import p from '../../package.json'
-import SoundManager from '@/core/core.Sounds'
-import { useSettingsStore } from './settings'
+import { computed, ref } from 'vue'
+import { defineStore } from 'pinia'
+import { GAME_NAME } from '@/config/app.config'
+import * as p from '../../package.json'
 
 export enum GameStates {
+  INIT = 'init',
   BETTING = 'betting',
-  EXTRACTING = 'extracting',
-  CLOSED = 'betting-closed',
+  SPINNING = 'spinning',
+  RESULTS = 'results',
 }
 
 export type TicketType = {
@@ -20,17 +19,6 @@ export type TicketType = {
   drawTS?: number
   id?: string | number
   matched?: number[]
-}
-
-interface GameStoreData {
-  version?: string
-  name?: string
-  room: string
-  state: GameStates
-  tickets: TicketType[]
-  tab: TabsEnum
-  totalWin: number
-  extractedNumbers: number[]
 }
 
 export type DrawTypeType = {
@@ -55,59 +43,32 @@ export type PastResultType = {
   win: number
 }
 
+export type RoulleteBetType = {
+  bet: number
+  index: number
+  chips: number
+}
+
 export const useGameStore = defineStore('game', () => {
-  const game = ref<GameStoreData>({
-    version: p.version,
-    name: GAME_NAME,
-    room: DEFAULT_ROOM,
-    state: GameStates.BETTING,
-    tickets: [],
-    tab: DEFAULT_TAB,
-    totalWin: 0,
-    extractedNumbers: [],
-  })
+  const gameName = ref<string>(GAME_NAME)
 
-  const selectedNumbers = ref<number[]>([])
+  const version = ref<string | number>(p.version)
 
-  const disableInteraction = ref<boolean>(false)
+  const gameState = ref<GameStates>(GameStates.INIT)
 
   const gameMode = ref<GameModeType>(GameModeType.MANUAL)
 
-  const history = ref<any>()
-  const draws = ref<DrawTypeType[]>()
+  const bets = ref<RoulleteBetType[]>([])
 
-  const displayResults = ref<boolean>(false)
+  const betsHistory = ref<RoulleteBetType[]>([])
 
-  const results = ref<GameResultsType>()
+  const disableInteraction = ref<boolean>(false)
+
+  const result = ref<number>(0)
 
   const resultsHistory = ref<PastResultType[]>([])
 
   const sidebarDisabled = ref<boolean>(false)
-
-  const winningNumbers = ref<number[]>([])
-
-  const setGamePlay = (_payload: any) => {
-    game.value = {
-      ...game.value,
-      ..._payload,
-    }
-  }
-
-  const setDisplayResults = (_payload: boolean) => (displayResults.value = _payload)
-
-  const setResults = (_payload: any) => (results.value = _payload)
-
-  const setHistory = (_payload: any) => {
-    history.value = _payload
-  }
-
-  const setDraws = (_payload: any) => {
-    draws.value = _payload
-  }
-
-  const setSelectedNumbers = (_payload: any) => {
-    selectedNumbers.value = _payload
-  }
 
   const setDisabledInteraction = (_payload: boolean) => {
     disableInteraction.value = _payload
@@ -123,64 +84,93 @@ export const useGameStore = defineStore('game', () => {
 
   const disableSidebar = (_payload: boolean) => (sidebarDisabled.value = _payload)
 
-  const clearWinningNumbers = () => {
-    winningNumbers.value = []
+  const setGameState = (newState: GameStates) => {
+    gameState.value = newState
   }
 
-  const setWinningNumbers = async (_numbers: number[]): Promise<void> => {
-    const { settings } = storeToRefs(useSettingsStore())
-    if (settings.value.INSTANT_BET) {
-      winningNumbers.value = _numbers
-      return Promise.resolve()
+  const removeBetByIndex = (betID: number) => {
+    const currentIndex = bets.value.findIndex((bet) => bet.index === betID)
+    if (currentIndex !== -1) {
+      bets.value.splice(currentIndex, 1)
     }
+  }
 
-    return new Promise((resolve) => {
-      const numbers = [..._numbers]
-      let i = 0
-
-      const h = () => {
-        setTimeout(
-          () => {
-            SoundManager.Instance().play('REVEALED')
-            winningNumbers.value.push(numbers[i])
-            i++
-            if (numbers.length === i) {
-              resolve()
-              return
-            }
-            h()
-          },
-          i === 0 ? 0 : 150,
-        )
+  const updateBetByID = (
+    betID: number,
+    value: number,
+    type: 'increase' | 'decrease' = 'increase',
+  ) => {
+    bets.value = bets.value.map((_bet) => {
+      if (_bet.index === betID) {
+        const newValue = type === 'increase' ? _bet.bet + value : _bet.bet - value
+        const chips = type === 'increase' ? _bet.chips + 1 : _bet.chips - 1
+        return {
+          ..._bet,
+          bet: newValue,
+          chips,
+        }
       }
-
-      h()
+      return { ..._bet }
     })
   }
 
+  const addBets = (bet: RoulleteBetType) => {
+    betsHistory.value?.push(bet)
+    const currentBet = bets.value.find((_bet) => bet.index === _bet.index)
+    if (currentBet) {
+      return updateBetByID(bet.index, bet.bet)
+    }
+    bets.value.push({ ...bet, chips: 1 })
+  }
+
+  const clear = () => {
+    betsHistory.value = []
+    bets.value = []
+  }
+
+  const undo = () => {
+    const lastBet = betsHistory.value[betsHistory.value.length - 1]
+
+    if (!lastBet) return
+
+    const currentBet = bets.value.find((_bet) => lastBet.index === _bet.index)
+
+    if (!currentBet) return
+
+    updateBetByID(currentBet.index, lastBet.bet, 'decrease')
+    betsHistory.value.pop()
+
+    if (currentBet.bet - lastBet.bet <= 0) {
+      return removeBetByIndex(currentBet.index)
+    }
+
+    return
+  }
+
+  const setResult = (_newResult: number) => (result.value = _newResult)
+
+  const totalBet = computed(() => bets.value.reduce((prevBet, currBet) => prevBet + currBet.bet, 0))
+
   return {
-    game,
-    history,
-    draws,
-    selectedNumbers,
-    disableInteraction,
+    bets,
+    betsHistory,
+    totalBet,
+    gameState,
     gameMode,
-    displayResults,
-    results,
+    gameName,
+    version,
+    disableInteraction,
     resultsHistory,
     sidebarDisabled,
-    winningNumbers,
+    result,
     disableSidebar,
-    setGamePlay,
-    setHistory,
-    setDraws,
-    setSelectedNumbers,
     setDisabledInteraction,
     setGameType,
-    setDisplayResults,
-    setResults,
     setResultsHistory,
-    setWinningNumbers,
-    clearWinningNumbers,
+    setGameState,
+    addBets,
+    clear,
+    undo,
+    setResult,
   }
 })

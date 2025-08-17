@@ -4,13 +4,13 @@ import ClockStatus from '../clock/ClockStatus.vue'
 import { useStatusStore } from '@/stores/status'
 
 const { balance } = useStatusStore()
-const { game } = useGameStore()
+const { gameName, version } = useGameStore()
 </script>
 <template>
   <div class="top-bar">
     <span>
-      {{ game.name }}
-      <sup>{{ game.version }}</sup>
+      {{ gameName }}
+      <sup>{{ version }}</sup>
     </span>
     <span>
       <!-- {{ Lang.Instance().translate('n:play.balance') }}:  -->

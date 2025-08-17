@@ -13,3 +13,60 @@
   min-width: var(--spacingEm-2-5);
   min-height: 14.5em;
 }
+
+.last-bets .content > * + * {
+  margin-top: var(--spacingEm-0-5);
+}
+
+.last-bets .content > * {
+  animation-fill-mode: forwards;
+  animation-duration: var(--duration);
+  animation-timing-function: ease-out;
+}
+
+.last-bets .content > *:nth-child(2n) {
+  animation-name: slideDownEven;
+}
+
+.last-bets .content > *:nth-child(odd) {
+  animation-name: slideDownOdd;
+}
+
+.last-bets .content > *:first-child {
+  animation-name: slideDownFadeIn;
+}
+
+.last-bets .content > *:nth-child(5) {
+  opacity: 0.2;
+}
+
+.last-bets .content > *:nth-child(4) {
+  opacity: 0.4;
+}
+
+.last-bets .content > *:nth-child(3) {
+  opacity: 0.6;
+}
+
+.last-bets .content > *:nth-child(2) {
+  opacity: 0.8;
+}
+
+@keyframes slideDownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDownOdd {
+  0% {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes slideDownEven {
+  0% {
+    transform: translateY(-100%);
+  }
+}

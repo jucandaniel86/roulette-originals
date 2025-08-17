@@ -15,8 +15,19 @@ export type FeaturesType = {
   playersData: PlayerDataType[]
 }
 
+export type PrizeType = {
+  index: number
+  bet: number
+  refund: number
+  win: number
+  m: number
+}
+
 export default class PublicStateResponseData {
-  public totalWinCash: number = -1
+  public totalWin: number = -1
   public isWon: boolean = false
-  public features!: FeaturesType[]
+  public isEnded: boolean = false
+  public prizes!: PrizeType[]
+  public winIndexes!: number[]
+  public result!: number
 }

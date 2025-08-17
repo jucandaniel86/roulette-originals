@@ -86,3 +86,8 @@
 .place-bet-btn:hover {
   background-color: #1fff20;
 }
+
+.place-bet-btn:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

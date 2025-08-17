@@ -1,13 +1,26 @@
 <script setup lang="ts">
 import WheelImg from '@/assets/imgs/wheel.png'
-import { onMounted, useTemplateRef } from 'vue'
+import { onMounted, useTemplateRef, watch } from 'vue'
 import WheelAnimation from './Wheel/WheelAnimation'
-import { useNumber } from '@/composables/useNumber'
+import { storeToRefs } from 'pinia'
+import { GameStates, useGameStore } from '@/stores/game'
+import SoundManager from '@/core/core.Sounds'
 const duration = 9000
 const width = 540
 const height = 540
 
 const wheel = useTemplateRef<HTMLCanvasElement>('wheel')
+
+//composables
+const { setGameState } = useGameStore()
+const { gameState, result } = storeToRefs(useGameStore())
+
+//animation
+const WAnim = new WheelAnimation()
+WAnim.addDropCallBack(() => {
+  console.log('the ball dropped:: ' + result.value)
+  setGameState(GameStates.RESULTS)
+})
 
 onMounted(() => {
   if (wheel.value) {
@@ -21,11 +34,14 @@ onMounted(() => {
 
     context2d?.scale(devicePixelRatio, devicePixelRatio)
 
-    const WAnim = new WheelAnimation({
+    WAnim.init({
       ctx: context2d,
       width: defaultWidth,
       height: defaultHeight,
-      ballStartDropCallback: () => {},
+      ballStartDropCallback: () => {
+        SoundManager.Instance().stop('SPIN')
+        SoundManager.Instance().play('DROP')
+      },
     })
 
     const startAnimationFrame = () => {
@@ -36,13 +52,21 @@ onMounted(() => {
     }
 
     startAnimationFrame()
-    const { generateRandomInt } = useNumber()
-    const currentNumber = generateRandomInt(0, 36)
-    WAnim.addDropCallBack(() => console.log('the ball dropped::', currentNumber))
-    setTimeout(() => {
+  }
+})
+
+//watchers
+watch(gameState, () => {
+  switch (gameState.value) {
+    case GameStates.SPINNING:
+      SoundManager.Instance().play('SPIN', true)
       WAnim.changeHasBall(true)
-      WAnim.changeResult(currentNumber, false)
-    }, 2000)
+      WAnim.changeResult(result.value, false)
+      break
+    case GameStates.BETTING:
+      WAnim.changeResult(false, false)
+      SoundManager.Instance().stop('SPIN')
+      break
   }
 })
 </script>

@@ -1,0 +1,96 @@
+.game-result-overlay {
+  position: absolute;
+  left: calc(var(--spacing) * 0);
+  right: -24px;
+  top: 27.5%;
+}
+.game-result-wrap {
+  font-size: 14px;
+  background: var(--grey-600);
+  border-radius: 16px;
+  text-align: center;
+  position: absolute;
+  font-weight: 800;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: var(--modal-width);
+  height: var(--modal-height);
+  overflow: hidden;
+  animation-duration: var(--duration);
+  border: 6px solid;
+  box-shadow: var(--shadows-lg);
+  padding: var(--ds-spacing-3, 10px);
+
+  height: 153px;
+}
+
+.game-result-wrap.win {
+  border-color: var(--green-500);
+}
+
+.game-result-wrap.lose {
+  border-color: var(--grey-300);
+}
+
+.game-result-content {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-result-content .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4px;
+}
+
+.game-result-content .content {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--border-radius-md);
+  background: var(--grey-500);
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+
+.number-multiplier {
+  height: 32px;
+}
+
+.game-result-wrap .number-multiplier > * {
+  margin: calc(var(--ds-spacing-0-5, 1px) * -1) var(--spacing-0) var(--spacing-0) !important;
+  font-size: 24px !important;
+  line-height: 132% !important;
+  max-width: var(--truncate-max-width);
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  font-weight: 700;
+}
+
+.game-result-wrap.lose .number-multiplier > * {
+  color: var(--grey-200);
+}
+.game-result-wrap.win .number-multiplier > * {
+  color: var(--green-500);
+}
+.roll-up {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: var(--border-radius-md);
+  font-size: 20px;
+  font-weight: 600;
+  transition: var(--duration);
+  transition-timing-function: ease-out;
+}

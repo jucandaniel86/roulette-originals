@@ -154,9 +154,14 @@
   --game-frame-radius: 0.25rem;
   --grey-100: rgb(213, 220, 235);
   --grey-200: rgb(177, 186, 211);
+  --grey-300: rgb(85, 112, 134);
   --grey-400: rgb(47, 69, 83);
   --grey-500: rgb(33, 55, 67);
+  --grey-600: rgb(26, 44, 56);
   --grey-700: rgb(15, 33, 46);
+
+  --green-400: rgb(31, 255, 32);
+  --green-500: rgb(0, 231, 1);
 
   --space-2: 0.5rem;
   --spacingEm-2-5: 2.5em;

@@ -5,10 +5,20 @@ import { useI18n } from 'vue-i18n'
 import ArrowRightIcon from '../Icons/ArrowRightIcon.vue'
 import { useNumber } from '@/composables/useNumber'
 import { useScroll } from '@vueuse/core'
+import { STAKE_COLORS } from '@/config/app.config'
 
+//props
+type ChipSelectorType = {
+  chips: number[]
+  defaultValue: number
+  isDisabled: boolean
+}
+const props = withDefaults(defineProps<ChipSelectorType>(), {
+  defaultValue: 0,
+  isDisabled: false,
+})
 //models
-const ChipsValues = ref<number[]>([1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000])
-const activeValue = ref<number>(ChipsValues.value[0])
+const activeValue = ref<number>(props.chips[props.defaultValue])
 const scrollContent = useTemplateRef('scrollContent')
 
 //composables
@@ -30,18 +40,26 @@ const next = () => (x.value = scrollContent.value?.scrollWidth || 0)
 <template>
   <div class="label">
     <div class="wrap">
-      <button type="button" tabindex="0" class="transition chip-btn" @click.prevent="prev">
+      <button
+        type="button"
+        :disabled="props.isDisabled"
+        tabindex="0"
+        class="transition chip-btn"
+        @click.prevent="prev"
+      >
         <ArrowLeftIcon />
       </button>
       <div class="scroll-wrap">
         <div class="content" ref="scrollContent">
           <button
-            v-for="(chip, i) in ChipsValues"
+            v-for="(chip, i) in props.chips"
             :key="`Chip${i}`"
             class="chip"
-            :disabled="false"
+            :class="`chip-${chip}`"
+            :disabled="props.isDisabled"
             @click.prevent="handleOnChange(chip)"
             :style="{
+              backgroundColor: STAKE_COLORS.get(chip),
               boxShadow:
                 activeValue === chip
                   ? 'rgb(145, 112, 0) 0px 0.125rem 0px 0px, rgb(255, 255, 255) 0px 0.065rem 0px 0.25rem'
@@ -52,7 +70,13 @@ const next = () => (x.value = scrollContent.value?.scrollWidth || 0)
           </button>
         </div>
       </div>
-      <button type="button" tabindex="0" class="transition chip-btn" @click.prevent="next">
+      <button
+        type="button"
+        :disabled="props.isDisabled"
+        tabindex="0"
+        class="transition chip-btn"
+        @click.prevent="next"
+      >
         <ArrowRightIcon />
       </button>
     </div>

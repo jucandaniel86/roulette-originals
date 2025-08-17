@@ -8,11 +8,8 @@ import type BetResponseData from './models/bet/BetResponseData'
 import type RequestData from './models/RequestData'
 
 import { DEFAULT_SOCKET_ENDPOINT, DEFAULT_SOCKET_SERVER_PATH, GAME_ID } from '@/config/app.config'
-import { useGameStore } from '@/stores/game'
+import { type RoulleteBetType } from '@/stores/game'
 import type PlayerDetailsData from './models/PlayerDetailsData'
-import type LobbyResponseData from './models/lobby/LobbyResponseData'
-import type JoinRequestData from './models/join/JoinRequestData'
-import type JoinResponseData from './models/join/JoinResponseData'
 import BetRequestData from './models/bet/BetRequestData'
 import Provider from './core.Provider'
 import SetupRequestData from './models/setup/SetupRequestData'
@@ -128,8 +125,8 @@ export default class NetworkController extends Singleton {
   }
 
   private updateSessionID(playerDetails: PlayerDetailsData): void {
-    if (this.loginRequestData.sessionID !== playerDetails.fixedReference)
-      this.loginRequestData.sessionID = playerDetails.fixedReference
+    if (this.loginRequestData.sessionID !== playerDetails.sessionID)
+      this.loginRequestData.sessionID = playerDetails.sessionID
   }
 
   private generateSetupData(): RequestData {
@@ -147,22 +144,14 @@ export default class NetworkController extends Singleton {
     return finalRequest
   }
 
-  private generateBetData(lines: any): RequestData {
+  private generateBetData(bets: RoulleteBetType[]): RequestData {
     const finalRequest = new BetRequestData()
-    const { bet } = useStatusStore()
 
-    const bets = {
-      bet: bet,
-      numbers: lines,
-    }
     finalRequest.sessionID = this.loginRequestData.sessionID
     finalRequest.gameID = this.loginRequestData.gameID
     finalRequest.publicState = {
-      action: 'START',
-      payload: {
-        bets: [bets],
-        serId: 'ser.keno.start',
-      },
+      action: 'spin',
+      bets,
     }
 
     finalRequest.requestType = 'game'
@@ -190,7 +179,7 @@ export default class NetworkController extends Singleton {
           })
 
           setSessionData({
-            sessionID: response.playerDetails.sessionId,
+            sessionID: response.playerDetails.sessionID,
             fixedID: response.playerDetails.fixedReference,
             credit: response.credit,
             currency: response.currency,
@@ -229,51 +218,22 @@ export default class NetworkController extends Singleton {
     }
   }
 
-  public async lobby(): Promise<LobbyResponseData> {
-    return this.ws.lobby({ requestType: 'lobby' }).then((response) => {
-      return response
-    })
-  }
-
-  public async join(_payload: JoinRequestData): Promise<JoinResponseData> {
-    return this.ws.join(_payload).then((response) => {
-      const { setGamePlay } = useGameStore()
-      const currentFeature = this.ws.getCurrentFeature(response.publicView.features)
-      const playerView = response.playerView
-      if (currentFeature) {
-        setGamePlay({
-          state: currentFeature.state,
-          room: currentFeature.id,
-        })
-      }
-      if (playerView.tickets) {
-        setGamePlay({
-          tickets: playerView.tickets,
-        })
-      }
-      return response
-    })
-  }
-
-  public async bet(lines: any[]): Promise<BetResponseData> {
+  public async bet(bets: RoulleteBetType[]): Promise<BetResponseData> {
     // const { setGamePlay } = useGameStore()
 
     if (this.isAuthenticated() === false) {
       return this.ws
         .authenticate(this.generateLoginRequest())
-        .then(() => this.ws.requestNextGame(this.generateBetData(lines) as any))
+        .then(() => this.ws.requestNextGame(this.generateBetData(bets) as any))
         .then((response) => {
           if (Utils.IsVariableSet(response.credit) === true)
-            // GameController.UpdateCreditData(response.credit);
             //@ts-ignore
             this.updateSessionID(response.playerDetails)
 
           return response
         })
     } else {
-      return this.ws
-        .requestNextGame(this.generateBetData(lines) as any)
-        .then((response) => response)
+      return this.ws.requestNextGame(this.generateBetData(bets) as any).then((response) => response)
     }
   }
 }

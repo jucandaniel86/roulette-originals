@@ -88,7 +88,7 @@
 }
 
 .chip {
-  color: #591700;
+  color: #000;
   display: inline-block;
   position: relative;
   height: var(--spacing-8);
@@ -99,6 +99,11 @@
   overflow: hidden;
   background-image: url('../../../assets/imgs/chip-bg.svg');
   background-color: rgb(255, 206, 0);
+}
+
+.chip-50,
+.chip-100 {
+  color: #fff;
 }
 
 .chip:disabled {
