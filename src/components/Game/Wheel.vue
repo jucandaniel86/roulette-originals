@@ -5,6 +5,7 @@ import WheelAnimation from './Wheel/WheelAnimation'
 import { storeToRefs } from 'pinia'
 import { GameStates, useGameStore } from '@/stores/game'
 import SoundManager from '@/core/core.Sounds'
+import { useSettingsStore } from '@/stores/settings'
 const duration = 9000
 const width = 540
 const height = 540
@@ -14,11 +15,11 @@ const wheel = useTemplateRef<HTMLCanvasElement>('wheel')
 //composables
 const { setGameState, disableSidebar } = useGameStore()
 const { gameState, result, playerResults } = storeToRefs(useGameStore())
+const { settings } = storeToRefs(useSettingsStore())
 
 //animation
 const WAnim = new WheelAnimation()
 WAnim.addDropCallBack(() => {
-  console.log('the ball dropped:: ' + result.value)
   setGameState(GameStates.RESULTS)
 })
 
@@ -39,8 +40,10 @@ onMounted(() => {
       width: defaultWidth,
       height: defaultHeight,
       ballStartDropCallback: () => {
-        SoundManager.Instance().stop('SPIN')
-        SoundManager.Instance().play('DROP')
+        if (!settings.value.INSTANT_BET) {
+          SoundManager.Instance().stop('SPIN')
+          SoundManager.Instance().play('DROP')
+        }
       },
     })
 
@@ -59,14 +62,23 @@ onMounted(() => {
 watch(gameState, () => {
   switch (gameState.value) {
     case GameStates.SPINNING:
-      SoundManager.Instance().play('SPIN', true)
+      if (!settings.value.INSTANT_BET) {
+        SoundManager.Instance().play('SPIN', true)
+      }
       WAnim.changeHasBall(true)
-      WAnim.changeResult(result.value, false)
+      WAnim.changeResult(result.value, settings.value.INSTANT_BET)
       disableSidebar(true)
+
+      if (settings.value.INSTANT_BET) {
+        setGameState(GameStates.RESULTS)
+      }
+
       break
     case GameStates.BETTING:
-      WAnim.changeResult(false, false)
-      SoundManager.Instance().stop('SPIN')
+      WAnim.changeResult(false, settings.value.INSTANT_BET)
+      if (!settings.value.INSTANT_BET) {
+        SoundManager.Instance().stop('SPIN')
+      }
       disableSidebar(false)
       break
     case GameStates.RESULTS:

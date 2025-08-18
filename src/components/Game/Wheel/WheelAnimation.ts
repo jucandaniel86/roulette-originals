@@ -149,8 +149,9 @@ export default class WheelAnimation {
         if (this.instantResult) {
           this.Ball.changePlayAnimation(true)
           this.Ball.changeAnimationCoordinates(QuadraticXY as any)
+
           if (this.hasDropped) {
-            this.dropCallback()
+            return this.dropCallback()
           }
         } else if (this.restOfRotation > 360) {
           const a = this.rotationIncreasements.ball
@@ -198,7 +199,8 @@ export default class WheelAnimation {
         ballRotation: 0,
         number: result,
       })
-      const totalRotation = 720 + position - this.rotations.ball
+      //720
+      const totalRotation = 1440 + position - this.rotations.ball
 
       this.totalRotation = totalRotation
       this.restOfRotation = totalRotation

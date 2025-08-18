@@ -242,6 +242,18 @@ a {
   border-bottom: 3px solid var(--grey-500);
 }
 
+.game-layout,
+.content-wrapper,
+#root,
+#root > div {
+  min-height: 100%;
+  height: calc(100% - 24px - var(--spacing-8));
+}
+
+.game-frame {
+  height: 100%;
+}
+
 @media (max-width: 914px) {
   .game-container {
     flex-direction: column-reverse;

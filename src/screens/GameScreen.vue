@@ -15,6 +15,7 @@ import Wheel from '@/components/Game/Wheel.vue'
 import { GameStates, useGameStore } from '@/stores/game'
 import { storeToRefs } from 'pinia'
 import GameResult from '@/components/Game/GameResult/GameResult.vue'
+import { useAppStore } from '@/stores/app'
 
 const GameContainer = useTemplateRef('gameContainer')
 
@@ -22,6 +23,7 @@ const GameContainer = useTemplateRef('gameContainer')
 const { resize } = useResize()
 const { undo, clear } = useGameStore()
 const { betsHistory, gameState, result, playerResults } = storeToRefs(useGameStore())
+const { isMobile } = storeToRefs(useAppStore())
 
 //@ts-ignore
 useResizeObserver(document.body, () => resize(GameContainer.value as any))
@@ -49,7 +51,11 @@ useResizeObserver(document.body, () => resize(GameContainer.value as any))
                     @onClear="clear"
                     :is-disabled="betsHistory.length === 0 || gameState === GameStates.SPINNING"
                   />
-                  <Wheel />
+                  <Wheel
+                    :style="{
+                      display: isMobile && gameState !== GameStates.SPINNING ? 'none' : 'flex',
+                    }"
+                  />
                 </div>
               </div>
             </div>
