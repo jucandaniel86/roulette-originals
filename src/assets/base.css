@@ -259,4 +259,16 @@ a {
     flex-direction: column-reverse;
     max-width: 400px;
   }
+
+  .game-layout,
+  .content-wrapper,
+  #root,
+  #root > div {
+    min-height: auto;
+    height: auto;
+  }
+
+  .game-frame {
+    height: auto;
+  }
 }

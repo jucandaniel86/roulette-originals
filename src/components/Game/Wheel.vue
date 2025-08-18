@@ -20,7 +20,9 @@ const { settings } = storeToRefs(useSettingsStore())
 //animation
 const WAnim = new WheelAnimation()
 WAnim.addDropCallBack(() => {
-  setGameState(GameStates.RESULTS)
+  setTimeout(() => {
+    setGameState(GameStates.RESULTS)
+  }, 1000)
 })
 
 onMounted(() => {
