@@ -95,6 +95,7 @@ const chips = computed(() => {
             position: 'absolute',
             top: 0,
             left: 0,
+            zIndex: 1,
           }"
         >
           <button class="board-chip">

@@ -31,8 +31,8 @@ const historyData = computed(() => {
   <div class="last-bets">
     <div class="content" style="--duration: 300ms">
       <button
-        v-for="(result, i) in historyData"
-        :key="`PastResult${i}`"
+        v-for="result in historyData"
+        :key="result.id"
         class="last-bets-btn"
         :style="{
           '--bg-color': result.color,

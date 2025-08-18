@@ -47,7 +47,7 @@ useResizeObserver(document.body, () => resize(GameContainer.value as any))
                   <GameActions
                     @onUndo="undo"
                     @onClear="clear"
-                    :is-disabled="betsHistory.length === 0"
+                    :is-disabled="betsHistory.length === 0 || gameState === GameStates.SPINNING"
                   />
                   <Wheel />
                 </div>

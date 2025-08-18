@@ -172,7 +172,7 @@ export const useGameStore = defineStore('game', () => {
   const setPlayerResults = (totalWin: number, prizes: PrizeType[], isWon: boolean) => {
     const totalBet: any = prizes.reduce((prevPrize, crrPrize) => prevPrize + crrPrize.bet, 0)
 
-    const multiplier = totalBet / totalWin
+    const multiplier = totalWin / totalBet
     playerResults.value = {
       totalWin,
       totalBet,

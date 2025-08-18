@@ -69,6 +69,7 @@ const getCurrentBet = (betID: number) => bets.value.find((bet) => bet.index === 
       :item="item"
       @onClick="handleAddBet"
       :is-disabled="gameState === GameStates.SPINNING"
+      :bet="getCurrentBet(item.betID)"
     />
 
     <BoardButton

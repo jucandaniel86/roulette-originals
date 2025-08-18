@@ -21,8 +21,6 @@
   border: 6px solid;
   box-shadow: var(--shadows-lg);
   padding: var(--ds-spacing-3, 10px);
-
-  height: 153px;
 }
 
 .game-result-wrap.win {

@@ -11,7 +11,7 @@ export const useTicketHistory = () => {
     const multiplier = totalBet / totalWin
 
     return {
-      id: _payload.round.roundID,
+      id: _payload.round.roundID || crypto.randomUUID(),
       playerResults: {
         totalBet,
         multiplier,

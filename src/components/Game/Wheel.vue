@@ -12,7 +12,7 @@ const height = 540
 const wheel = useTemplateRef<HTMLCanvasElement>('wheel')
 
 //composables
-const { setGameState } = useGameStore()
+const { setGameState, disableSidebar } = useGameStore()
 const { gameState, result, playerResults } = storeToRefs(useGameStore())
 
 //animation
@@ -62,10 +62,12 @@ watch(gameState, () => {
       SoundManager.Instance().play('SPIN', true)
       WAnim.changeHasBall(true)
       WAnim.changeResult(result.value, false)
+      disableSidebar(true)
       break
     case GameStates.BETTING:
       WAnim.changeResult(false, false)
       SoundManager.Instance().stop('SPIN')
+      disableSidebar(false)
       break
     case GameStates.RESULTS:
       if (playerResults.value.isWon) {
@@ -73,7 +75,7 @@ watch(gameState, () => {
       } else {
         SoundManager.Instance().play('LOSE')
       }
-
+      disableSidebar(false)
       break
   }
 })
