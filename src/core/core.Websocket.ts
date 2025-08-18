@@ -8,12 +8,6 @@ import type ErrorData from './models/ErrorData'
 import HearthBeatRequestData from './models/heartbeat/HeartbeatRequestData'
 import type LoginRequestData from './models/login/LoginRequestData'
 import type LoginResponseData from './models/login/LoginResponseData'
-import type LobbyResponseData from './models/lobby/LobbyResponseData'
-import type LobbyRequestData from './models/lobby/LobbyRequestData'
-import type JoinRequestData from './models/join/JoinRequestData'
-import type JoinResponseData from './models/join/JoinResponseData'
-import { GameStates, useGameStore } from '@/stores/game'
-import ModalController from './core.ModalController'
 
 export default class WebsocketConnector extends Logger {
   public disconnectedCallback!: () => void
@@ -90,7 +84,6 @@ export default class WebsocketConnector extends Logger {
             }
           }
           this.startHeartbeat()
-          this.getBroadcast()
           resolve(true)
         }
       }
@@ -171,14 +164,6 @@ export default class WebsocketConnector extends Logger {
     return this.serverRequest<BetRequestData, BetResponseData>(request)
   }
 
-  public async lobby(request: LobbyRequestData): Promise<LobbyResponseData> {
-    return this.serverRequest<LobbyRequestData, LobbyResponseData>(request)
-  }
-
-  public async join(request: JoinRequestData): Promise<JoinResponseData> {
-    return this.serverRequest<JoinRequestData, JoinResponseData>(request)
-  }
-
   private startHeartbeat() {
     const nInterval: number = HEARTBEAT_INTERVAL * 1000
 
@@ -205,65 +190,6 @@ export default class WebsocketConnector extends Logger {
         clearTimeout(this.heartbeatHandle)
       }
     }
-  }
-
-  private getBroadcast() {
-    this.webSocket!.addEventListener('message', (message: any) => {
-      const messageData = JSON.parse(message.data)
-      const { setGamePlay } = useGameStore()
-
-      if (messageData.requestType === 'broadcast') {
-        this._logBroadcast(messageData)
-
-        switch (messageData.updateType) {
-          case 'KICK': {
-            return ModalController.Instance().kicked(messageData.reason)
-          }
-          case 'TIMER':
-            {
-              const currentFeature = this.getCurrentFeature(messageData.publicView.features)
-              const playerView = messageData.playerView
-              if (currentFeature) {
-                setGamePlay({
-                  state: currentFeature.state,
-                  room: currentFeature.id,
-                  tickets: playerView.tickets,
-                })
-
-                switch (currentFeature.state) {
-                  case GameStates.BETTING:
-                  // return setTimer(currentFeature.secsToExtr)
-                  case GameStates.EXTRACTING:
-                    {
-                      setGamePlay({
-                        totalWin: playerView.totalWin,
-                        extractedNumbers: currentFeature.turn.extractedNumbers,
-                      })
-                    }
-                    break
-                }
-              }
-            }
-            break
-        }
-      }
-    })
-  }
-
-  public getCurrentFeature(features: any[]) {
-    const { game } = useGameStore()
-
-    //@ts-ignore
-    return features.find((feature) => feature.id === game.room)
-  }
-
-  private _logBroadcast(log: any) {
-    console.groupCollapsed(
-      `%c ${this.name} :: BROADCAST `,
-      'background:rgb(69, 3, 144); color: white; display: block;',
-    )
-    console.log(log)
-    console.groupEnd()
   }
 
   private _log(log: any, isFront = false) {

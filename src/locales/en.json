@@ -74,5 +74,11 @@
     "TEXT_WIN": "You win ",
     "TEXT_LOSE": "You lose",
     "TEXT_SUCCESS": "Success"
+  },
+  "betModal": {
+    "bet": "Bet",
+    "multiplier": "Multiplier",
+    "payout": "Payout",
+    "playRoulette": "Play Roulette"
   }
 }

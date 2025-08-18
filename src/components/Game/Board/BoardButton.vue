@@ -70,7 +70,6 @@ const chips = computed(() => {
   <button
     :class="activeClass"
     :data-testid="props.item.gridArea"
-    data-amount="0"
     @click.prevent="handleClick"
     :disabled="props.isDisabled"
     :style="{

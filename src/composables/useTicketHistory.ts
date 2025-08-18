@@ -1,5 +1,6 @@
 import type BetResponseData from '@/core/models/bet/BetResponseData'
 import type { PastResultType } from '@/stores/game'
+import { useNumber } from './useNumber'
 
 export const useTicketHistory = () => {
   const formatTicket = (_payload: BetResponseData): PastResultType => {
@@ -8,10 +9,12 @@ export const useTicketHistory = () => {
       0,
     )
     const totalWin = _payload.publicState.totalWin
-    const multiplier = totalBet / totalWin
+    const multiplier = totalWin > 0 ? totalBet / totalWin : 0
+
+    const { generateRandomInt } = useNumber()
 
     return {
-      id: _payload.round.roundID || crypto.randomUUID(),
+      id: _payload.round.roundID || `ID${generateRandomInt(1, 999999999)}`,
       playerResults: {
         totalBet,
         multiplier,

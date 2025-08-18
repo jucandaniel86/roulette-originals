@@ -125,32 +125,9 @@ export default class ModalController extends Singleton {
     })
   }
 
-  public results(_win: number, results: number[]) {
-    const text = ''
+  public bet(bet: any) {
+    const { openBetModal } = useModalStore()
 
-    const { openResultsModal } = useModalStore()
-
-    const dt = new Date()
-    const monthNames = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December',
-    ]
-
-    openResultsModal({
-      title: `Daily Draw, ${dt.getDate()} ${monthNames[dt.getMonth()]} ${dt.getFullYear()}`,
-      content: text,
-      buttons: [this.buttons.onOk],
-      results,
-    })
+    openBetModal(bet)
   }
 }

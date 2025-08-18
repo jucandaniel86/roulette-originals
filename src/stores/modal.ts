@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 //@ts-ignore
 import InfoModalWindow from '@/components/Core/modal/InfoModalWindow.vue'
-import ResultsModal from '@/components/Core/modal/ResultsModal.vue'
 import GameInfoModal from '@/components/Core/modal/GameInfoModal.vue'
+import BetModal from '@/components/Core/modal/BetModal.vue'
 
 // eslint-disable-next-line vue/prefer-import-from-vue
 import { extend } from '@vue/shared'
@@ -66,12 +66,12 @@ export default defineStore('modal', () => {
     openModal({ component: InfoModalWindow, props: settings })
   }
 
-  const openResultsModal = (settings: IModalPropsSettings) => {
-    openModal({ component: ResultsModal, props: settings })
-  }
-
   const openGameInfoModal = (settings: IModalPropsSettings) => {
     openModal({ component: GameInfoModal, props: settings })
+  }
+
+  const openBetModal = (settings: any) => {
+    openModal({ component: BetModal, props: settings })
   }
 
   return {
@@ -80,7 +80,7 @@ export default defineStore('modal', () => {
     openModal,
     closeModal,
     openInfoModal,
-    openResultsModal,
     openGameInfoModal,
+    openBetModal,
   }
 })

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { BOARD_CONFIG, BOARD_LAYOUT, BoardConfigButtonEnum } from '@/config/board.config'
+import { BOARD_LAYOUT } from '@/config/board.config'
 import BoardButton from './BoardButton.vue'
 import { computed } from 'vue'
 import { useAppStore } from '@/stores/app'
@@ -7,33 +7,18 @@ import { storeToRefs } from 'pinia'
 import { GameStates, useGameStore } from '@/stores/game'
 import { useStatusStore } from '@/stores/status'
 import SoundManager from '@/core/core.Sounds'
+import { useFindBoardItem } from '@/composables/useFindBoardItem'
 
 //composables
 const { isMobile } = storeToRefs(useAppStore())
 const { addBets, setGameState } = useGameStore()
 const { bet } = storeToRefs(useStatusStore())
 const { bets, result, gameState } = storeToRefs(useGameStore())
+const { table } = useFindBoardItem()
 
 //styles
 const rows = 5
-
-//numbers
-const { row1, row2, row3, row4, row5 } = BOARD_CONFIG
-const numbers = [
-  ...row1.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
-  ...row2.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
-  ...row3.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
-  ...row4.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
-  ...row5.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
-]
-
-const buttons = [
-  ...row1.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
-  ...row2.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
-  ...row3.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
-  ...row4.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
-  ...row5.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
-]
+const { numbers, buttons } = table()
 
 //computed
 const layout = computed(() => (isMobile.value ? BOARD_LAYOUT.mobile : BOARD_LAYOUT.desktop))

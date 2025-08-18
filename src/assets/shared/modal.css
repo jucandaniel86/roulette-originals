@@ -134,3 +134,41 @@
   color: var(--grey-200);
   margin-right: var(--spacing-2);
 }
+
+button.classic {
+  --tw-shadow:
+    0 4px 6px -1px var(--tw-shadow-color, #0000001a),
+    0 2px 4px -2px var(--tw-shadow-color, #0000001a);
+  --tw-ring-offset-color: var(--background);
+  box-shadow:
+    var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow),
+    var(--tw-ring-shadow), var(--tw-shadow);
+
+  white-space: nowrap;
+  color: #fff;
+  font-weight: 600;
+  padding-block: 0.9375rem;
+  padding-inline: 1.25rem;
+  line-height: 1;
+  font-size: 0.875rem;
+  background-color: #2f4553;
+  border-radius: var(--ds-radius-md, 0.25rem);
+  gap: calc(var(--spacing) * 2);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+button.classic:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button.classic:active:not(:disabled) {
+  transform: scaleX(0.98) scaleY(0.98);
+}
+
+button.classic:hover {
+  background-color: #557086;
+}

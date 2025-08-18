@@ -1,6 +1,3 @@
-import { DEFAULT_ROOM } from '@/config/app.config'
-import type { RoomType } from './models/lobby/LobbyResponseData'
-
 export default class Utils {
   public static IsVariableSet(variable: any): boolean {
     return variable !== undefined && variable !== null
@@ -42,13 +39,5 @@ export default class Utils {
         resolve(false)
       }
     })
-  }
-
-  public static getActiveRoom = (rooms: RoomType[]) => {
-    let roomName = this.getUrlParameter('room')
-    if (!roomName) {
-      roomName = DEFAULT_ROOM
-    }
-    return rooms.find((room) => room.nameResx === roomName)
   }
 }

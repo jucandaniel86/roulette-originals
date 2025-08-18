@@ -1,4 +1,3 @@
-import { useGameStore } from '@/stores/game'
 import type { ProviderType } from './core.Provider'
 import Singleton from './core.Singleton'
 import Utils from './core.Util'
@@ -38,7 +37,7 @@ export default class HttpConnection extends Singleton {
   }
 
   getHistory = async () => {
-    const { setHistory } = useGameStore()
+    // const { setHistory } = useGameStore()
     const { fixedID } = useSessionStore()
     try {
       //log send
@@ -58,14 +57,14 @@ export default class HttpConnection extends Singleton {
       if (!historyData) {
         throw 'History Err::'
       }
-      setHistory(historyData)
+      // setHistory(historyData)
     } catch (err: any) {
       this._warn(err)
     }
   }
 
   getDraws = async () => {
-    const { setDraws } = useGameStore()
+    // const { setDraws } = useGameStore()
     const { fixedID } = useSessionStore()
     try {
       //log send
@@ -85,7 +84,7 @@ export default class HttpConnection extends Singleton {
       if (!drawsData) {
         throw 'Draws Err::'
       }
-      setDraws(drawsData.draws)
+      // setDraws(drawsData.draws)
     } catch (err: any) {
       this._warn(err)
     }

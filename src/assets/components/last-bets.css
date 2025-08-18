@@ -82,6 +82,7 @@
   transition-property: background-color, opacity;
   transition-duration: 0.2s;
   background-color: var(--bg-color);
+  color: #fff;
 }
 
 .last-bets-btn:hover {

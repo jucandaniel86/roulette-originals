@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useFindBoardItem } from '@/composables/useFindBoardItem'
 import { PAST_RESULTS_LIMIT } from '@/config/app.config'
+import ModalController from '@/core/core.ModalController'
 import { GameStates, useGameStore } from '@/stores/game'
 import { storeToRefs } from 'pinia'
 import { computed, ref, watch } from 'vue'
@@ -38,6 +39,7 @@ const historyData = computed(() => {
           '--bg-color': result.color,
           '--bg-color-lighten': result.colorHover,
         }"
+        @click.prevent="ModalController.Instance().bet(result)"
       >
         {{ result.result }}
       </button>

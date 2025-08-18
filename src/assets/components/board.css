@@ -20,6 +20,15 @@
   transition-duration: 0.2s;
 }
 
+.pocket.preview {
+  min-width: 4ch !important;
+  min-height: 3ch !important;
+}
+
+.pocket.preview .name {
+  writing-mode: vertical-lr;
+}
+
 .pocket:disabled {
   opacity: 0.5;
   cursor: not-allowed;

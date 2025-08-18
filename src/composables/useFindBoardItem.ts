@@ -14,7 +14,32 @@ export const useFindBoardItem = () => {
     return numbers.find((number) => number.label === label)
   }
 
+  const table = () => {
+    //numbers
+    const { row1, row2, row3, row4, row5 } = BOARD_CONFIG
+    const numbers = [
+      ...row1.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
+      ...row2.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
+      ...row3.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
+      ...row4.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
+      ...row5.filter((row) => row.type === BoardConfigButtonEnum.NUMBER),
+    ]
+
+    const buttons = [
+      ...row1.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
+      ...row2.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
+      ...row3.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
+      ...row4.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
+      ...row5.filter((row) => row.type === BoardConfigButtonEnum.BUTTON),
+    ]
+    return {
+      numbers,
+      buttons,
+    }
+  }
+
   return {
     find,
+    table,
   }
 }
