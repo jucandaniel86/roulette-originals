@@ -26,7 +26,7 @@ const { setStatusData } = useStatusStore()
 const { setGameType } = useGameStore()
 const { gameMode, sidebarDisabled, totalBet, bets } = storeToRefs(useGameStore())
 const { credit } = storeToRefs(useStatusStore())
-const { autoplayOptions } = useAutoplay()
+const { autoplayOptions, runAutoplay, startAutoplay, stopAutoplay } = useAutoplay()
 const { isMobile } = storeToRefs(useAppStore())
 const {
   handleNumberOfBetsChange,
@@ -64,6 +64,10 @@ const placeBetDisabled = computed(() => {
 
   if (sidebarDisabled.value) return true
 
+  if (gameMode.value === GameModeType.AUTO && autoplayOptions.value.numberOfBets === 0) {
+    return true
+  }
+
   return false
 })
 </script>
@@ -79,6 +83,16 @@ const placeBetDisabled = computed(() => {
       <span>{{ t('components.sidebar.startAutobet') }}</span>
     </button>
     <!-- /AUTOBET BUTTON -->
+
+    <!-- STOP AUTOBET BUTTON -->
+    <button
+      class="place-bet-btn transition"
+      @click.prevent="stopAutoplay"
+      v-if="gameMode === GameModeType.AUTO && isMobile && runAutoplay"
+    >
+      <span>{{ t('components.sidebar.stopAutobet') }}</span>
+    </button>
+    <!-- /STOP AUTOBET BUTTON -->
 
     <!-- GAME TABS -->
     <Tabs
@@ -185,10 +199,21 @@ const placeBetDisabled = computed(() => {
     <!-- AUTOBET BUTTON -->
     <button
       class="place-bet-btn transition"
-      v-if="gameMode === GameModeType.AUTO && !isMobile"
+      v-if="gameMode === GameModeType.AUTO && !isMobile && !runAutoplay"
+      @click.prevent="startAutoplay"
       :disabled="placeBetDisabled"
     >
       <span>{{ t('components.sidebar.startAutobet') }}</span>
+    </button>
+    <!-- /AUTOBET BUTTON -->
+
+    <!-- STOP AUTOBET BUTTON -->
+    <button
+      class="place-bet-btn transition"
+      @click.prevent="stopAutoplay"
+      v-if="gameMode === GameModeType.AUTO && !isMobile && runAutoplay"
+    >
+      <span>{{ t('components.sidebar.stopAutobet') }}</span>
     </button>
     <!-- /AUTOBET BUTTON -->
 

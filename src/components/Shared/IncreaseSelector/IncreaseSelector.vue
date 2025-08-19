@@ -74,21 +74,22 @@ watch(props, () => {
   <label class="switch-wrapper">
     <div class="content">
       <div class="switch-input-buttons-wrap">
-        <a
+        <button
           class="transition reset"
           @click.prevent="onReset"
+          :disabled="disabled || props.isDisabled"
           :class="{ disabled: props.isDisabled, active: disabled }"
         >
           {{ t('components.sidebar.reset') }}
-        </a>
-        <a
+        </button>
+        <button
           class="transition increase"
-          :disabled="disabled || props.isDisabled"
+          :disabled="props.isDisabled"
           :class="{ active: !disabled, disabled: props.isDisabled }"
           @click.prevent="activate"
         >
           {{ t('components.sidebar.increase') }}:
-        </a>
+        </button>
       </div>
       <div class="input-wrapper" :class="{ invalid: props.hasError }">
         <div class="input-content" ref="inputContent">

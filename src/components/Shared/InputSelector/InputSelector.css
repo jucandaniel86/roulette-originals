@@ -57,6 +57,12 @@
   border-color: var(--input-hover-border);
 }
 
+.input-value:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .label-content {
   display: inline-flex;
   align-items: center;

@@ -60,6 +60,11 @@ export type PastResultType = {
   result: number
 }
 
+export type AutoplayT = {
+  startAutoplay: boolean
+  bets: number
+}
+
 export const useGameStore = defineStore('game', () => {
   const gameName = ref<string>(GAME_NAME)
 
@@ -86,6 +91,11 @@ export const useGameStore = defineStore('game', () => {
     totalWin: 0,
     multiplier: 0,
     isWon: false,
+  })
+
+  const autoplay = ref<AutoplayT>({
+    startAutoplay: false,
+    bets: 0,
   })
 
   const setDisabledInteraction = (_payload: boolean) => {
@@ -181,7 +191,10 @@ export const useGameStore = defineStore('game', () => {
     }
   }
 
+  const setAutoplay = (_opt: AutoplayT) => (autoplay.value = _opt)
+
   return {
+    autoplay,
     bets,
     betsHistory,
     totalBet,
@@ -204,5 +217,6 @@ export const useGameStore = defineStore('game', () => {
     undo,
     setResult,
     setPlayerResults,
+    setAutoplay,
   }
 })

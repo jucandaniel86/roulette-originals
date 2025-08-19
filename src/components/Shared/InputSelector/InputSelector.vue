@@ -23,6 +23,7 @@ const props = withDefaults(defineProps<InputSelectorType>(), {
 //models
 const model = defineModel<any>()
 const displayTooltip = ref<boolean>(false)
+const disabled = ref<boolean>(props.isDisabled)
 
 //emitters
 const emitters = defineEmits(['onInput', 'onHover'])
@@ -46,6 +47,7 @@ const handleMouseOut = () => {
 
 watch(props, () => {
   displayTooltip.value = props.invalid
+  disabled.value = props.isDisabled
 })
 </script>
 <template>
@@ -64,7 +66,7 @@ watch(props, () => {
           @input="handleInputChange"
           @mouseover="handleMouseOver"
           @mouseout="handleMouseOut"
-          :disabled="props.isDisabled"
+          :disabled="disabled"
           class="input-value"
         />
       </div>
