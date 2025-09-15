@@ -561,7 +561,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       betID: 153,
     },
     {
-      label: '',
+      label: 'Red',
       cols: 2,
       gridArea: 'colorRed',
       colorHover: COLOR_RED_LIGHT,
@@ -572,7 +572,7 @@ export const BOARD_CONFIG: BoardConfigType = {
       betID: 155,
     },
     {
-      label: '',
+      label: 'Black',
       cols: 2,
       gridArea: 'colorBlack',
       color: COLOR_GREY,

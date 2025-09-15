@@ -6,6 +6,7 @@ import ArrowRightIcon from '../Icons/ArrowRightIcon.vue'
 import { useNumber } from '@/composables/useNumber'
 import { useScroll } from '@vueuse/core'
 import { STAKE_COLORS } from '@/config/app.config'
+import CurrencyConverter from '@/core/core.CurrencyConvertor'
 
 //props
 type ChipSelectorType = {
@@ -86,7 +87,7 @@ const next = () => (x.value = scrollContent.value?.scrollWidth || 0)
       <div class="currency svelte-13xyujb" role="presentation">
         <span class="content svelte-13xyujb" style="">
           <span class="" style="max-width: 12ch">
-            <span>$0.00</span>
+            <span>{{ CurrencyConverter.Convert(activeValue) }}</span>
           </span>
         </span>
       </div>

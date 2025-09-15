@@ -4,6 +4,14 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 4px;
+  position: relative;
+  flex-direction: column;
+}
+
+.results-wrap .results-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .results-wrap .content {

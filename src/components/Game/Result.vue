@@ -27,6 +27,7 @@ watch(props, () => {
 </script>
 <template>
   <div class="results-wrap">
+    <span class="results-label">Results</span>
     <div class="content">
       <span
         class="roll-up"
