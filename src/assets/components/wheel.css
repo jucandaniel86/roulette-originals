@@ -46,7 +46,7 @@
   }
 }
 
-@media (max-width: 914px) {
+@media (max-width: 800px) {
   .wheel-house {
     position: absolute;
     top: 0;

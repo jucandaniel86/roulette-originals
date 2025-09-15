@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, useTemplateRef } from 'vue'
+import { ref, useTemplateRef, watch } from 'vue'
 import ArrowLeftIcon from '../Icons/ArrowLeftIcon.vue'
 import { useI18n } from 'vue-i18n'
 import ArrowRightIcon from '../Icons/ArrowRightIcon.vue'
@@ -37,6 +37,18 @@ const handleOnChange = (_val: number) => {
 
 const prev = () => (x.value = 0)
 const next = () => (x.value = scrollContent.value?.scrollWidth || 0)
+
+watch(
+  props,
+  () => {
+    console.log('props', props.defaultValue, props.chips[props.chips.length - 1])
+    if (props.defaultValue === props.chips.length - 1) {
+      handleOnChange(props.chips[props.defaultValue])
+      next()
+    }
+  },
+  { deep: true },
+)
 </script>
 <template>
   <div class="label">

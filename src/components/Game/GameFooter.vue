@@ -8,6 +8,7 @@ import { useSettingsStore } from '@/stores/settings'
 import { useSessionStore } from '@/stores/session'
 import Provider from '@/core/core.Provider'
 import Tooltip from '../Core/tooltip/Tooltip.vue'
+import { useStatusStore } from '@/stores/status'
 
 const settingsOpen = ref<boolean>(false)
 const volume = ref()
@@ -15,9 +16,10 @@ const settingsBtn = useTemplateRef('settingsBtn')
 
 const toggleSettingsOpen = () => (settingsOpen.value = !settingsOpen.value)
 const { openGameInfoModal } = useModalStore()
-const { setMaxBet } = useSessionStore()
+const { setMaxBet, betLevels } = useSessionStore()
 const { t } = useI18n()
 const settingsStore = useSettingsStore()
+const { setStatusData } = useStatusStore()
 
 const toggleInstantBet = () => {
   settingsStore.updateSettings({
@@ -30,6 +32,13 @@ watch(volume, () => {
     VOLUME_MUSIC: volume.value,
   })
 })
+
+const maxBet = () => {
+  setMaxBet()
+  setStatusData({
+    bet: betLevels[betLevels.length - 1],
+  })
+}
 
 const volumePercentage = computed(() => volume.value * 100)
 const volumeIcon = computed(() => {
@@ -77,7 +86,7 @@ onMounted(() => {
           <div class="icon instant-bet-icon"></div>
           <span>{{ t('components.settings.instantBet') }}</span>
         </button>
-        <button class="settings-button-wrapper action-off" @click.prevent="setMaxBet">
+        <button class="settings-button-wrapper action-off" @click.prevent="maxBet">
           <div class="icon max-bet-icon"></div>
           <span>{{ t('components.settings.maxBet') }}</span>
         </button>

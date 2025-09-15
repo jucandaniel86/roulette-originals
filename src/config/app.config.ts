@@ -12,7 +12,7 @@ export enum TabsEnum {
 export const GAME_NAME = 'Roulette Originals'
 export const APP_STORAGE_ID = GAME_NAME.split(' ').join('_') + '_store'
 export const GAME_ID = 11067
-export const MOBILE_RESOLUTION = 914
+export const MOBILE_RESOLUTION = 800
 
 //Game Configuration
 export const MIN_RANDOM_BALL = 1
@@ -63,7 +63,8 @@ export const WEEKLY_PRIZE = 250000
 export const CLOSE_BETS_SEC = 9
 export const EXTRACTING_SEC = 9
 
-export const GAME_RATIO = 16 / 8
+export const GAME_RATIO = 1.3
+export const GAME_MOBILE_RATIO = 1.3
 
 //config
 /**http://localhost:3000/work/keno-originals/?game=cowboykeno&playToken=loadtest1012&funReal=1&fixedID=empty&brandID=0&siteID=4&gameID=11510&language=en&historyURL=HTMLTableBetList_v2.jsp&lobbyURL=https://www.multiplaygaming.com&depositURL=https://www.multiplaygaming.com&endpoint=irgs-ge.multiplaygaming.com/mprgs&RNGtoken=test23754 */

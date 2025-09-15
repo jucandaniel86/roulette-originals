@@ -10,6 +10,7 @@
   overflow: hidden;
   margin: var(--spacing-0) auto;
   border-top-right-radius: var(--game-frame-radius);
+  min-height: 300px !important;
 }
 
 .game-content > .wrap {
@@ -32,7 +33,7 @@
     'chipControls chipControls chipControls';
 }
 
-@media (max-width: 914px) {
+@media (max-width: 800px) {
   .game-screen {
     position: relative;
     grid-template-columns: repeat(2, auto);

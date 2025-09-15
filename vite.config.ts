@@ -9,7 +9,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  base: '/work/roulette-originals/',
+  base: '/games/originals_roulette/',
   plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {

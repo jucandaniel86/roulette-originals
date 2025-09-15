@@ -312,7 +312,7 @@
   cursor: pointer;
 }
 
-@media (max-width: 914px) {
+@media (max-width: 800px) {
   .game-footer {
     max-width: 400px;
   }

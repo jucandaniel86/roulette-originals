@@ -11,6 +11,7 @@ export const useAppStore = defineStore('app', () => {
   })
 
   const isMobile = computed(() => resolution.value.width <= MOBILE_RESOLUTION)
+  const landscape = computed(() => resolution.value.width > resolution.value.height)
   const setResolution = (_resolution: { width: number; height: number }) => {
     resolution.value = _resolution
   }
@@ -22,6 +23,7 @@ export const useAppStore = defineStore('app', () => {
     color,
     isMobile,
     version,
+    landscape,
     setColor,
     setResolution,
   }

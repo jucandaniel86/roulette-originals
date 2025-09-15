@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useResize } from '@/composables/useResize'
-import { useResizeObserver } from '@vueuse/core'
+import { useResizeObserver, useWindowSize } from '@vueuse/core'
 import { useTemplateRef } from 'vue'
 
 //components
@@ -24,6 +24,7 @@ const { resize } = useResize()
 const { undo, clear } = useGameStore()
 const { betsHistory, gameState, result, playerResults } = storeToRefs(useGameStore())
 const { isMobile } = storeToRefs(useAppStore())
+const { height } = useWindowSize()
 
 //@ts-ignore
 useResizeObserver(document.body, () => resize(GameContainer.value as any))
@@ -36,9 +37,16 @@ useResizeObserver(document.body, () => resize(GameContainer.value as any))
         <div class="game-frame scrollY">
           <div class="game-container">
             <Sidebar />
-            <div class="game-content" style="min-height: 570px">
+            <div class="game-content">
               <div class="wrap">
-                <div class="game-screen">
+                <div
+                  class="game-screen"
+                  :style="{
+                    gap: height < 500 ? 0 : '0.5em',
+                    padding: height < 500 ? 0 : '1em',
+                    gridTemplateColumns: `auto minmax(max-content, ${height < 500 ? 200 : 270}px) auto`,
+                  }"
+                >
                   <Board />
                   <Result :display="gameState === GameStates.RESULTS" :result="result" />
                   <GameResult

@@ -314,7 +314,7 @@
   font-weight: 600;
 }
 
-@media (max-width: 914px) {
+@media (max-width: 800px) {
   .board {
     justify-self: flex-start;
   }

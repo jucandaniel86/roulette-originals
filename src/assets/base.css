@@ -254,7 +254,7 @@ a {
   height: 100%;
 }
 
-@media (max-width: 914px) {
+@media (max-width: 800px) {
   .game-container {
     flex-direction: column-reverse;
     max-width: 400px;
